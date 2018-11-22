@@ -1,0 +1,46 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use. 
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Homework 1}
+\author{The Author} 
+
+\begin{document}
+\begin{center}\noindent{\bf Math 381:  Homework \#2}\\Mingchen Li\\ \end{center}
+
+\begin{enumerate}
+    \item [{\bf Problem 1: ASV 1.15}] 
+    \begin{enumerate}
+        \item Using the notation given, P(we did not see all three colors) = $P(W\cup G \cup R)$. Using inclusion-exclusion we have following equation: 
+        \[P(W\cup G \cup R)= P(W)+P(G)+P(R)-P(W\cap G)-P(R\cap G)-P(W\cap R)+P(W\cap G \cap R)\]
+        Where we can calculate each component individually:
+        
+        $P(W)= P(G)= \dfrac{3^3}{4^3}= \dfrac{27}{64}$
+        
+        $P(R)=\dfrac{2^3}{4^3}=\dfrac{8}{64}$
+        
+        $P(W\cap G)=\dfrac{8}{64}$
+        
+        $P(W\cap G)=a\dfrac{8}{64}$
+        
+    \end{enumerate}
+\end{enumerate}
+\end{document}

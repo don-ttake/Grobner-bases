@@ -1,0 +1,136 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newcommand{\stab}{\operatorname{stab}}
+\newcommand{\orb}{\operatorname{orb}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Inn}{\operatorname{Inn}}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Homework 5}
+\author{The Author}
+%\date{}			
+
+
+
+
+%THIS IS WHERE THE ACTUAL TEXT OF THE DOCUMENT BEGINS.				
+\begin{document}
+
+\begin{center}\noindent{\bf Math 333:  Homework \#7}\\Mingchen Li\\ \end{center}
+\thispagestyle{empty}
+
+
+
+\hrulefill %This just makes a nice horizontal line. Useful if you like to separate your problems with lines!
+
+
+
+
+
+\begin{enumerate}
+
+\item[{\bf Problem 1:}] Prove that $\Q(\sqrt 2) = \{a+b\sqrt 2\,|\, a,b\in \Q\}$ forms a subring of $\R$. 
+\begin{proof}
+Since $0+1&\sqrt 2 =\sqrt 2\in \R$, we know that $\Q(\sqrt 2)$ is not empty. Let $x, y\in \Q(\sqrt 2)$ be arbitrary. We aim to show that it they are closed under subtraction and multiplication.\begin{enumerate}
+    \item[$x-y$:] We can express $x=a_x+b_x\sqrt 2$, $y=a_y+b_y\sqrt 2$. Since addition is commutative:ß
+    \[x-y=a_x+b_x\sqrt 2-a_y+b_y\sqrt 2=(a_x-a_y)+(b_x-b_y)\sqrt 2\]. Since $\Q$ is closed under subtraction, we have $(a_x-a_y), (b_x-b_y)\in \Q$. Thus $x-y\in\Q(\sqrt 2) $ as well.
+    \item[$xy$:] keep the notation above, $xy=(a_x+b_x\sqrt 2)(a_y+b_y\sqrt 2)$. Since $a_x,b_x,a_y.b_y\in ß\Q\subset \R$, multiplication under ring $\Rß$ is distributive by addition: 
+    \[xy=a_xa_y+2b_xb_y+a_xb_y\sqrt2+a_yb_x\sqrt2\]
+    Since $\Q$ is closed and addition and multiplication, $a_xa_y+2b_xb_y\in \Q$ and $a_xb_y+a_yb_x\in \Q$, we have $xy\in \Q(\sqrt 2) $ as well.
+\end{enumerate}
+\end{proof}
+
+\newpage
+\item[{\bf 12.22:}] Let $R$ be a commutative ring with unity, and let $U(R)$ denote the set of units of $R$. Prove that $U(R)$ is a group under the multiplicative operation of $R$ (called the {\it group of units} of $R$).
+\begin{proof}
+We aim to show $U(R)$ has following properties:\begin{enumerate}
+    \item[Identity: ]Since $R$ with unity contains an identity element under multiplication, denoted as $e$, we know that $e^{-1}=e$ by definition of multiplicative inverse. Thus $e\in U(R)$.
+    \item[Inverses: ]Since $U(R)$ denote the set of units of $R$, by definition of units, they have multiplicative inverses.
+    \item[closed: ] Take arbitrary $a,b\in U(R)$, we know that the $abb^{-1}a^{-1}=e$. Thus $ab$ have multiplicative inverses in $R$, hereby $ab\in U(R)$.
+    \item[Associative: ] The associativity is given in the definition of Ring.
+\end{enumerate}
+\end{proof}
+
+\newpage
+\item[{\bf 12.47:}] Determine the smallest subring of $\Q$ that contains $1/2$. That is, find the subring $S$ with the property that $S$ contains $1/2$ and, if $T$ is any subring containing $1/2$, then $T$ contains $S$.
+\begin{proof}
+Consider the set $S=\{\dfrac{a}{2^{b}}|a\in \Z, b\in \Z \text{ and } b\geq 0\}$
+
+First we shall show that this is a subgroup of $\Q$. Since $\dfrac{1}{2}\in S$, $S$ is not empty. Then let $x,y\in S$ be arbitrary,
+\[x-y=\dfrac{a_x}{2^{b_x}}-\dfrac{a_y}{2^{b_y}}=\dfrac{a_x2^{b_y}-a_y2^{b_x}}{2^{b_x+b_y}}\]
+Since all number shown above are in $\Z$ which is closed under addition and multiplication. We have $a_x2^{b_y}-a_y2^{b_x}\in\Z$. At the same time, since $b_x,b_y\in \Z^{+}$, $b_x+b_y\in\Z^+$ as well. Thus $a-b\in S$.
+
+When we keep the notation above, 
+\[ab=\dfrac{a_x}{2^{b_x}}\dfrac{a_y}{2^{b_y}}=\dfrac{a_xa_y}{2^{b_x+b_y}}\]
+With the same logic as above, $ab\in S$ as well. Thus $S$ is a subring of $\Q$
+
+Then we aim to show that it satisfy the property of smallest subring that contains $\dfrac{1}{2}$:
+
+Assume that $T$ is an arbitrary subring of $\Q$ that contains $\dfrac{1}{2}$. Then since addition is closed, $\{\dfrac{a}{2}|a\in \Z\}\subseteq T$.
+
+At the same time, since mutiplicaiton operation is also closed. $\{\dfrac{a}{2^b}|a\in \Z, b\in \Z^+\}=S\subseteq T$. Thus $S$ is the smallest subring as desired.
+\end{proof}
+
+
+\newpage
+\item[{\bf 13.28(adj):}] Let $R$ be the set of all real-valued functions defined for all real numbers under function addition and multiplication.
+\begin{enumerate}
+
+\item Prove that $R$ is a ring.\footnote{Whenever necessary, you can rely upon known properties of functions and of the real numbers, including the fact that the real numbers form a ring.}
+\item Determine all zero-divisors of $R$.
+\item Show that every nonzero element is a zero divisor or a unit.
+\end{enumerate}
+
+\begin{enumerate}
+    \item To show $R$ is a ring, we need to show that it satisfy following properties for arbitrary $a,b,c\in R$:\begin{enumerate}
+        \item[a+b=b+a: ] Take arbitrary $x\in \R$, we know that $a(x)+b(x)=b(x)+a(x)$ since addition in $\R$ is commutative. Thus $a+b=b+a$.
+        \item[(a+b)+c=a+(b+c): ] Take arbitrary $x\in \R$, since addition in $\R$ is associative, we know \[(a(x)+b(x))+c(x)=a(x)+(b(x)+c(x))\]
+        Thus $(a+b)+c=a+(b+c)$
+        \item[Exist additive identity: ] Consider the constant zero function from $\R$ to $\R$: $e(x)=0$ for all $x\in \R$. $a(x)+e(x)=a(x)+0=a(x)$ for arbitrary $x\in \R$. Thus $a+x=a$.
+        \item[Additive inverse: ] For arbitrary $x\in \R, a\in R$, define the function $a^{-1}(x)=-a(x)$. This is a real valued function by definition so $a^{-1}\in R$. At the same time, $a(x)+a^{-1}(x)=a(x)-a(x)=0=e(x)$. Thus we have found the addition inverse in $R$.
+        \item[a(bc)=(ab)c: ] Let $x\in \R$ be arbitrary, since multiplication in $\R$ is associative, we have:
+        \[a(bc)(x)=a(x)(b(x)c(x))=(a(x)b(x))c(x)=(ab)c(x)\]
+        Thus multiplication is associative in $R$.
+        \item[distributive over addition:] For arbitrary $x\in \R$, since $\R$ is distributive over addition, we have:
+        \[a(b+c)(x)=a(x)(b(x)+c(x))=a(x)b(x)+a(x)c(x)=(ab+ac)(x)\]
+        \[(b+c)a(x)=(b(x)+c(x))a(x)=b(x)a(x)+c(x)a(x)=(ba+ca)(x)\]
+    \end{enumerate}
+    Thus $R$ is a Ring
+    \item The zero divisors of $R$ are function $f\in R$ that are not constant zero but $f(x)=0$ for some $x\in R$. Consider the function $g$ where $g(x)=0$ for all $x\in\{x|f(x)\neq 0\}$. This function $g$ is also real valued. And $fg(x)=0$ for all $x\in \R$ since $fg(x)=f(x)g(x)$ and at least one of the two is zero.
+    
+    Assume there is some zero divisor, $f$, such that $f(x)\neq 0$ for all $x\in \R$. Then there are some $g\in R$ such that $fg=e$, $f(x)g(x)=0$ for all $x\in \R$. However given that $f(x)$ is never zero, $g$ must be a constant zero function which contradicts our assumption. Thus the zero divisors are precisely the set of functions that are zero for some(not all) $x\in \R$.
+    
+    \item Given $f\in R$ is not constant zero function. Then it must be one of the two of the following functions:\begin{itemize}
+        \item If $f(x)=0$ for some $x\in \R$, then as shown above in (b) f is a zero-divisor
+        \item If $f(x)\neq 0$ for all $x\in \R$. Notice that constant 1 function: $g(x)=1$ for all $x\in \R$ is the multiplicative identity since $g(x)f(x)=1*f(x)=f(x)=f(x)*1=f(x)g(x)$. Given that $f(x)$ is never zero, we can define 
+        \[f^{-1}(x)=\dfrac{1}{f(x)}\]
+        And $f$ is hereby a unit.
+    \end{itemize}
+    
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}  
+
+%THIS IS WHERE THE DOCUMENT ENDS. Anything written after this will not appear on the pdf.

@@ -1,0 +1,233 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newcommand{\stab}{\operatorname{stab}}
+\newcommand{\orb}{\operatorname{orb}}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Homework 2}
+\author{The Author}
+%\date{}			
+
+
+
+
+%THIS IS WHERE THE ACTUAL TEXT OF THE DOCUMENT BEGINS.				
+\begin{document}
+
+\begin{center}\noindent{\bf Math 333:  Homework \#4}\\Mingchen Li\\ \end{center}
+\thispagestyle{empty}
+\hrulefill %This just makes a nice horizontal line. Useful if you like to separate your problems with lines!
+
+
+For the majority of this homework, you will work with an important algebraic ``counting" result: the Orbit-Stabilizer Theorem. Throughout Problems 1-4, we assume $G$ is a group of permutations on a set $S$ (this doesn't mean $G$ is the group of ALL permutations of $S$ - it could be merely a subgroup) and $s$ is an element of the set $S$. 
+
+\begin{enumerate}
+
+\item[{\bf Problem 1:}] First, define the {\it stabilizer} of $s$ in $G$ to be $$\stab_G(s)=\{\varphi \in G\,|\, \varphi(s) = s\}.$$ That is, $\stab_G(s)$ is the set of elements in $G$ which fix $s$. Prove that $\stab_G(s)$ is a subgroup of $G$ for any $s\in S$.
+\begin{proof}
+Firstly, $stab_G(s)$ is not empty since the identity permutation in G is also a stabilizer of s. We aim to use the two-step strategy to prove its a subgroup: \begin{enumerate}
+    \item closed under operation. For arbitrary $a,b\in stab_G(s)$, $a(s)=s$, $b(a(s))=s$.  Thus the set $stab_G(s)$ is closed under  composition operation in G. 
+    \item Exist inverse. Let $a\in stab_G(s)$ to be arbitrary. We know $a(x)=y$, $a(z)=x$ for some $x,y,z \in S$. Define $a^{-1}(y)=x$ and $a^{-1}(x)=z$ in similar fashion. Then for arbitrary $x\in S$: \[a^{-1}a(x)=a^{-1}(y)=x= a(z)= aa^{-1}(x)\]
+    Thus we have found our inverse. Since $a(s)=s$, by our construction $a^{-1}(s)=s$ as well. Thus $a^{-1}\in stab_G(s)$.
+    
+\end{enumerate}
+And we have completed the proof using two step method.
+\end{proof}
+\newpage
+\item[{\bf Problem 2:}] Define the {\it orbit} of $s$ under $G$ to be the set $$\orb_G(s) = \{\phi(s)\,|\,\phi\in G\}.$$ That is, $\orb_G(s)$ is the set of all places $s$ can be mapped by elements of $G$.  Prove that the set of orbits $ORB = \{\orb_G(s)\,|\, s\in S\}$ form a partition of $S$.
+
+\begin{proof}
+We aim to show ORB is a partition of S by evaluating definition of partition: \begin{enumerate}
+    \item Pairwise disjoint: If S is a singleton, then the result is trivially true. Here we assume S has at least 2 elements. Take arbitrary $s_1, s_2\in S, s_1\neq s_2$. If $orb_G(s_1)\neq orb_G(s_1) $, we aim to show $<orb_G(s_1)\cap orb_G(s_1)=\emptyset>$
+    
+    Assume that the intersection is non-empty, that is, $\exists g_1, g_2 \in G$ such that $g_1(s_1)=g_2(s_2)$. However, since G is a group, $g_1^{-1} \in G$ as well. Then 
+    \[g_1^{-1}g_2(s_2)=g_1^{-1}g_1(s_1)=s_1\]
+    However since G is closed, $g_1^{-1}g_2\in G$ and so is $g_ng_1^{-1}g_2$ for all $g_n\in G$. Thus \[orb_G(s_1)= \{g_n(s_1)|g_n\in G\}=\{g_ng_1^{-1}g_2(s_2) | g_n\in G\} \subseteq \{g_n(s_2)|g_n\in G\} \]
+    
+    Using the same reasoning but express $s_2= g_2^{-1}g_1(s_1)$, we can arrive another direction of inclusion. Thus $orb_G(s_1)=orb_G(s_2)$. $\Rightarrow \Leftarrow$
+    
+    \item  $\bigcup_{orb_G(s_i)\in ORB} orb_G(s_i)= S$: Notice that 
+    \[ \bigcup_{orb_G(s_i)\in ORB} orb_G(s_i) = \bigcup_{s_i\in S}\bigcup_{\phi\in G} \phi(s_i) =\bigcup_{\phi\in G} \bigcup_{s_i\in S}\phi(s_i)\]
+    Fix $\phi=\phi_0$, since $\phi_0$ is a permutation, then it is bijection. $\bigcup_{s_i\in S}\phi_0(s_i)$ denotes $\phi_0(S)= S$ by surjection. Thus:
+    \[\bigcup_{orb_G(s_i)\in ORB} orb_G(s_i) = \bigcup_{\phi\in G} \phi(S)=\bigcup_{\phi\in G}S = S
+    \]
+    \item The family does not contain empty set: Let $s\in S$ be arbitrary element. Since G is a group, $e\in G$ where $e$ represents the identity permutation. Thus $s\in orb_G(s)$,  $orb_G(s)$ is not empty.
+\end{enumerate}
+\end{proof}
+
+\newpage
+\item[{\bf Problem 3:}] For any element $s\in S$, define a function $T_s$ from the set of left cosets of the stabilizer to the elements in the orbit of $s$ via the mapping $$T_s(\varphi\,\stab_G(s)) = \varphi(s).$$
+
+Prove that this function is a well-defined\footnote{this is not ``obvious," as a coset may be denoted using any of its elements!} bijection.
+
+\begin{enumerate}
+    \item Well-defined: Let $s\in S$ be arbitrary. If there are $\varphi_1, \varphi_2\in G$ such that 
+    
+    $\varphi_1\,\stab_G(s)=\varphi_2\,\stab_G(s)$ where $T_s(\varphi_1 stab_G(s))= \varphi_1(s)\text{ and } T_s(\varphi_2 stab_G(s))=\varphi_2(s)$
+        We aim to show:
+        \[\varphi_1(s)=\varphi_2(s) \]
+    For the sake of simplicity, we will denote $stab_G(s)=\mathcal{S}$ in this proof. Given the property of cosets, we know that:
+    \[\varphi_1\mathcal{S}=\varphi_2\mathcal{S} \text{ if and only if } \varphi_1 \in \varphi_2\mathcal{S}\]
+    
+    Then $\varphi_1 = \varphi_2\varphi_0$ for some $\varphi_0 \in \mathcal{S}$. Since $\varphi_0 \in \mathcal{S}$, we know $\varphi_0(s)=s$. Thus:
+    \[\varphi_1(s)=\varphi_2\varphi_0(s)=\varphi_2(s) \]
+    
+    
+    \item Bijection: \begin{enumerate}
+        \item Injection: Let $s\in S$ be arbitrary. If there are $\varphi_1, \varphi_2\in G$ such that 
+        \[T_s(\varphi_1 stab_G(s))=\varphi_1(s)=\varphi_2(s)=T_s(\varphi_2 stab_G(s))\]
+        We aim to show 
+        \[\varphi_1 stab_G(s)=\varphi_2 stab_G(s) \]
+        Again for the sake of simplicity, we will denote $stab_G(s)=\mathcal{S}$ in this proof. 
+        
+        Since $\varphi_1(s)=\varphi_2(s)$, and G is a group, $\varphi_1^{-1}\in G$. $\varphi_1^{-1}\varphi_2(s)=s$. Thus $\varphi_1^{-1}\varphi_2\in \mathcal{S}$. Again by property of cosets:
+        \[aH=bH \text{ if and only if } a^{-1}b\in H\]
+        Thus $\varphi_1 stab_G(s)=\varphi_2 stab_G(s)$.
+        \item Surjection: Let $s\in S$ be arbitrary. For arbitrary $\varphi(s) \in orb_G(s)$, we aim to show that there is some left coset of $stab_G(s)$, $astab_G(s)$, such that $T_s(a stab_G(s))=\varphi(s)$.
+        
+        
+        \newline 
+        We shall pick $a=\varphi$ and we are done.
+        
+    \end{enumerate}
+\end{enumerate}
+
+ 
+\newpage
+\item[{\bf Problem 4:}] Using the previous problem\footnote{(Hint: and another well-known, named, algebraic counting-type theorem...)}, prove the Orbit-Stabilizer Theorem: 
+
+\begin{theorem}[Orbit-Stabilizer] Let $G$ be a finite group of permutations of a set $S$. Then, for any $s\in S$, $$|G|=|\orb_G(s)|\,|\stab_G(s)|.$$
+\end{theorem}
+\begin{proof}
+By Lagrange's Theorem:\begin{theorem}
+ If $G$ is a finite group and $H$ is a subgroup of $G$, then $|H|$ divides $|G|$. Moreover, the number of distinct left (right) cosets of H in G is $|G| / |H|$.
+\end{theorem}
+Let $s\in S$ be arbitrary. Since we have proven that $stab_G(s)$ is a subgroup of G, thus:
+\[|G|/ |stab_G(s)|=  \text{number of distinct left cosets of } stab_G(s)\]
+
+Since we have shown that function $T_s$ from the set of left cosets of the stabilizer to the elements in the orbit of $s$ via the mapping $$T_s(\varphi\,\stab_G(s)) = \varphi(s).$$
+is a well-defined bijection. Thus the cardinality of set of left cosets and orbit is the same. 
+\[|G|/ |stab_G(s)|=|orb_G(s)| \]
+\end{proof}
+
+\newpage
+\item[{\bf 7.45}]  Let $G =\{ (1), (12)(34), (1234)(56), (13)(24), (1432)(56), (56)(13), (14)(23), (24)(56)\}$. 
+\begin{enumerate}[a)]
+\item Find the stabilizer of 1 and the orbit of 1.
+\item Find the stabilizer of 3 and the orbit of 3.
+\item Find the stabilizer of 5 and the orbit of 5.
+\end{enumerate}
+\begin{enumerate}[a)]
+\item $stab_G(1)=\{(1), (24)(56)\}.$\\ \\    
+      $orb_G(1)=\{1, 2, 3, 4\}.$ \\
+      
+\item $stab_G(3)=\{(1), (24)(56)\}.$\\ \\
+      $orb_G(3)=\{1, 2, 3, 4\}.$ \\
+      
+\item $stab_G(5)=\{(1), (12)(34), (13)(24), (14)(23)\}.$\\ \\
+      $orb_G(5)=\{5, 6\}.$
+
+\end {enumerate}
+
+\newpage
+\item [{\bf 7.62:}]  Use the Orbit-Stabilizer theorem to calculate the order of the following groups (note: each of these is a group of rotations of a platonic solid). \footnote{You may find it helpful to read (and to some extent, mimic) the proof of the order of the group of rotations on the cube - See Example 9, p. 153, in Chapter 7 of Gallian. You may also want to look up a picture of these platonic solids if you have never seen them - Figure 27.5 in Gallian is one such.}
+\begin{enumerate}
+\item The group of rotations of a regular tetrahedron (a solid with four congruent equilateral triangles as faces).
+\item The group of rotations of a regular octahedron (a solid with eight congruent equilateral triangles as faces).
+\item The group of rotations of a regular dodecahedron (a solid with 12 congruent regular pentagons as faces).
+\item The group of rotations of a regular icosahedron (a solid with 20 congruent equilateral triangles as faces).
+\end{enumerate}
+\begin{enumerate}
+
+\item Denote $G$ to be the group of rotations of a regular tetrahedron. Label the vertices by $\{1, 2, 3, 4\}$ where 1 is the top vertex and $\{2, 3, 4\}$ are the vertices of the bottom regular triangle. Label four faces as $\{a, b, c, d\}$ where face $a$ is the face that is disjoint from vertex 1. Consider vertex 1: 
+
+\newline Since 1 can be moved to any vertex of the tetrahedron, $orb_G(1)=\{1, 2, 3, 4\}$ and $|orb_G(1)| = 4.$ 
+\newline If we fixed 1, the rotations available are rotation on face $a$ which is a regular triangle. There are 3 possible rotations on this plane: $(1), (234), (243)$, so $stab_G(1)=\{(1), (234), (243)\}$ and $|stab_G(1)|=3.$\\
+Hence, by Orbit-Stabilizer theorem, $|G|=|orb_G(1)||stab_G(1)|=12.$\\
+
+\item Denote $G$ be the group of rotations of a regular octahedron. In similar vein, label its vertices by $\{1,2,3,4,5,6\}$ where 1 is the top vertex and 6 is the bottom vertex. Consider vertex 1: 
+\newline Since 1 can be moved to any vertex, $|orb_G(1)|=6 $. If fix 1, we also fix vertex 6. Thus the rotation available are rotations on the 4 vertices that are left behind which form a square in a plane. Thus there are 4 possible rotations $(1), (2345), (24)(35), (2543)$, so $|stab_G(1)|= 4.$ \\
+Then, $|G|=|orb_G(1)||stab_G(1)|=24.$\\
+
+\item Let $G$ be the group of rotations of a regular dodecahedron, and label its vertices by $\{1,2,...,20\}.$ Consider vertex 1: Since 1 can be moved to any vertex, $|orb_G(1)|=20.$ If fix 1, there are 3 possible rotations because vertex 1 is connected to 3 vertices, so $|stab_G(1)|= 3.$\\
+Then, $|G|=|orb_G(1)||stab_G(1)|=60.$\\
+
+\item Let $G$ be the group pf rotations of a regular icosahedron, and label its vertices by $\{1, 2,..., 12\}.$ Consider vertex 1: Since 1 can be moved to any vertex, $|orb_G(1)|=20.$ If fix q, there are 5 possible rotations since 1 is to 5 regular riangles, so $|stab_G(1)|= 5$.\\
+Then, $|G|=|orb_G(1)||stab_G(1)|=60.$
+
+\end{enumerate}
+
+
+
+\newpage
+\item[{\bf 7.25}] Suppose that $G$ is an Abelian group with an odd number of elements. Show that the product of all the elements of $G$ is the identity.
+\begin{proof}
+
+Given $G$ is a group with odd number of elements, denote $G = \{ e, g_1, g_2, ... ,g_{2n}\}$ for $n \in \N.$ We aim to prove this theorem by proving 
+\[\forall  g_i \in G\setminus\{e\}, g_i \neq g_i^{-1}.\] 
+Assume that the statement above if false: $\exists  g_i \in G\setminus\{e\}$, such that $g_i = g_i^{-1}$. Then we know $g_i^{2}=g_i^{-1}g_i=e$. And because $g_i\neq e$, $|g_i|\neq 1$, so $|g_i|=2.$ However, $|G|$ is odd and $2$ does not divide $|G| \Rightarrow\Leftarrow$
+
+Given $g_i\neq g_i^{-1},$ G is Abelian, we can find n distinct $g_i$s such that $G = \{e, g_1, g_1^{-1}, g_2, g_2^{-1},..., g_n, g_n^{-1}\}.$ Then
+\[\prod_{g_i\in G}g_i = eg_1g_1^{-1}g_2g_2^{-1},...g_ng_n^{-1} = e\]
+And we have finished the proof.
+\end{proof}
+\newpage
+\item[{\bf Problem 8:}] (These two exercises together constitute a single problem.)
+\begin{enumerate}
+\item[{\bf 3.73}] Consider the set $H = \{a+bi\in \C\,|\, a^2 + b^2 = 1\}$. Prove that $H$ forms a subgroup of $\C^*$, the group of nonzero complex numbers under multiplication.  Describe the elements of $H$ geometrically.\footnote{Again, it may be helpful to use the $re^{i\theta}$ form for complex numbers.}
+
+\item[{\bf 7.14}] Let $H$ be as in the previous problem. Give a geometric description  of the cosets of $H$ in $\C^*$ (with proof).\\
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}
+    \item 3.73: We can rewrite the set H using exponential form of complex number:
+    \[\hat{H}=\{e^{\theta i}| \theta\in [-2\pi,2\pi]\}\]
+    We aim to show first that $H=\hat{H}$:
+    
+    For arbitrary $h\in H$, $h=a+bi=r(\cos \theta +i\sin \theta)$ where $r=\sqrt{a^2+b^2}=1$, $\theta= \tan^{-1}\dfrac{b}{a}$. By Euler's formula:
+    \[e^{i\theta}=\cos \theta +i\sin \theta \]
+    $h=e^{i\theta}\in \hat{H}$, $H\subseteq \hat{H}$. Using the same reasoning but in reverse order, we have $H\supseteq \hat{H}$. Thus $H=\hat{H}$. 
+    
+    Then we aim to use one step method to show $\hat{H}$ is a subgroup. For arbitrary $a$, $b\in \hat{H}$. We aim to show $ab^{-1}\in \hat{H}$. 
+    \newline Given that $b=e^{i\theta_2}$, denoted $b^{-1}=e^{-i\theta_2}$. $bb^{-1}=e^{i\theta_2-i\theta_2}=1$. 1 is the identity of $\hat{H}$ since for arbitrary $h\in \hat{H}:$ $1\times h= h\times 1 =h$. 
+    
+    \newline In similar vein, $a=e^{i\theta_1}$ and $ab^{-1}=e^{1(\theta_1-\theta_2)}$ where $\theta_1-\theta_2$ can be mapped to $[-2\pi, 2\pi]$ by trigonometry. 
+    
+    Thus $H=\hat{H}\leq \C^*$.
+    
+    Geometrically, the elements of $H$ is the point on the unit circle.
+    
+    \item 7.14 The cosets of H are the circles that center at origin. 
+    \newline Given $a= re^{i\theta_a}\in \C^*, h=e^{i\theta_h}\in H$, $ah=re^{i(\theta_a+\theta_h)}=re^{i\theta}$. This can be mapped to a circle curve with radius of r on the plane where X axis is $\R$ and Y axis is $i\R$. We can define the mapping function 
+    $f:aH \longrightarrow \R\times i\R$ as 
+    \[f(re^{i\theta})=(r\cos\theta, ri\sin\theta)\]
+    By Euler's formula, the function is well defined and for some $x=(r\cos\theta, ri\sin\theta)$, if $f(a)=f(b)=x$, then $a=b=r\cos\theta+ ri\sin\theta$. Thus it is injective. Thus for every point on the curve $x^2+y^2=r$, that point can be expressed as $(r\cos\theta, ri\sin\theta)$ where $\theta\in [-2\pi, 2\pi]$. There is a unique $s\in aH$ that map to it. Hereby it have the geometric property as described. 
+\end{enumerate}
+\end{proof}
+
+ 
+
+\end{enumerate}
+
+\end{document}  
+
+%THIS IS WHERE THE DOCUMENT ENDS. Anything written after this will not appear on the pdf.

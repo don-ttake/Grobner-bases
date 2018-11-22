@@ -1,0 +1,256 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newcommand{\stab}{\operatorname{stab}}
+\newcommand{\orb}{\operatorname{orb}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Inn}{\operatorname{Inn}}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Midterm Review}
+\author{The Author}
+%\date{}			
+
+
+
+
+%THIS IS WHERE THE ACTUAL TEXT OF THE DOCUMENT BEGINS.				
+\begin{document}
+
+\begin{center}\noindent{\bf Math 333:  Midterm Review}\\Nora Youngs\\ \end{center}
+\thispagestyle{empty}
+$Z_n={0,..n-1}$ under modulo addition
+
+
+This document provides a list of the material to study for the first midterm. In general, you need not perfectly memorize definitions/theorems word-for-word - it's much more important that you understand the general meaning, any important properties, and can use the objects and theorems properly. 
+
+Some questions to ponder as you study, to help think about the purpose of the material we've learned:
+
+\begin{enumerate}
+\item What is the use of showing something is a group? Why would it be advantageous to know that a set had this property?
+\item What is the purpose of thinking about ``isomorphism" when you're working with groups?
+\item Homomorphism isn't as strong as isomorphism, so why do we bother to define the idea?
+\item What kinds of groups are ``nicest?"  If you had to work with any kind of group for a computational purpose, which one would be the easiest to handle? 
+\item One of the properties a subgroup may (or may not) have is normalcy. What is the benefit of knowing that a subgroup is normal?
+\end{enumerate}
+\hrulefill %This just makes a nice horizontal line. Useful if you like to separate your problems with lines!
+
+
+
+
+
+
+
+
+\newpage
+\begin{enumerate}
+\item Definitions to know:
+
+\begin{itemize}
+\item group: associative, exist inverse, closed, exist identity
+\item subgroup: not empty, exist inverse and closed or $ab^{-1}\in G$ and not empty
+\item coset: $H\leq G$. the left coset of H in G is the set $\{ah|a\in G, h\in H\}$ denoted $aH$. some properties: \begin{enumerate}
+    \item $aH=H $ iff $a\in H$
+    \item $(ab)H=a(bH)$
+    \item either $aH=bH$ or $aH\cap bH=\varnothing$
+    \item $aH=bH\Longleftrightarrow a\in bH \Longleftrightarrow a^{-1}b \in H$
+    \item $aH\leq G$ iff $a\in H$
+\end{enumerate}
+\item normal subgroup:  a subgroup is normal if $aH=Ha$ for all a $\in G$
+\item quotient group: the set of cosets, 
+
+Given G be a group and H be a normal subgroup of G, the set $G/H=\{aH|a\in G\}$ is a group under the operation of $(aH)(bH)=(ab)H$
+\item abelian: commutative
+\item cyclic: $\langle a \rangle$
+\item order (group and element)
+\item center: the set of elements that commutes with every element in G
+
+Let G be a group and Z(G) be center, if $G/Z(G)$ is cyclic, then G is abelian.
+
+$G/Z(G)$
+\item centralizer: $C(a)=\{g\in G|ag=ga\}$ It's a subgroup of G.
+\item orbit: places G can carry i to. G is a group of permutations on S, $orb_G(i)=\{\varphi (i)|\varphi\in G\}$
+\item stabilizer: permutations that fixes i. $stab_G(i)=\{\varphi|\varphi(i)=i, \varphi \in G\}$
+\item homomorphism
+\item isomorphism
+\item kernel
+\end{itemize}
+
+
+
+
+
+
+
+
+\newpage
+\item Examples we have investigated:
+\begin{itemize}
+\item $\Z$, $\Q$, $\R$, $\C$ under addition
+\item $\Q^*$, $\R^*$, $\C^*$, $\Q_{>0}$ under multiplication (and the unit-circle subgroup of $\C^*$, often denoted $S^1$.)
+\item $\Z/n\Z$ under modular addition
+\item $U(n)$ under modular multiplication
+\item Matrix groups under multiplication, especially $GL_n(\R)$, $SL_n(\R)$
+\item cyclic groups
+\item permutation groups (symmetric $S_n$, alternating, even permutation $A_n$, etc)
+\item dihedral groups
+\item rotation groups
+\item direct products of groups
+\item quotient groups
+\end{itemize}
+
+
+
+\newpage
+
+\item Theorems to be able to use (and state fairly precisely:)
+\begin{itemize}
+\item Lagrange's theorem: subgroup order divide order of parent group. 
+\item The Fundamental Theorem of Cyclic groups: Every subgroup of a cyclic group is cyclic. Moreover, any subgroup of $\langle a \rangle$'s order divides $|\langle a \rangle|=n$. For each positive divisor k of n, there is exactly on subgroup of order k: $\langle a^{n/k} \rangle$
+
+important corollaries: \begin{enumerate}
+    \item in a finite group, the number of elements of order d is a multiple of $\phi(d)$, (coprimes less than d)
+\end{enumerate}
+\item The First Isomorphism Theorem
+\item The Fundamental Theorem of Finite Abelian Groups
+
+Every finite Abelian group is a direct product of cyclic groups of prime-power order. Moreover, the number of terms in the product and the orders of the cyclic groups are uniquely determined by the group.
+
+\item The orbit-stabilizer theorem: \[\text{G is finite group of permutations of a set S, then for any } i\in S: |G|=|orb_G(i)||stab_G(i)|\]
+\item Cauchy's theorem
+\end{itemize}
+
+\newpage
+\item Methods: you should be able to show
+\begin{itemize}
+\item  $G$ with a certain operation forms a group (or doesn't!)
+\item $G$ is abelian (or is not)
+\item $G$ is cyclic (or is not)
+\item $H$ is a subgroup of $G$ (or isn't)
+\item $H$ is (or is not) a normal subgroup of $G$:
+
+Show $aHa^{-1}\subseteq H$ 
+\item $\phi:G\rightarrow A$ is (or isn't) a homomorphism/isomorphism
+\item $G_1$, $G_2$ are isomorphic (or aren't).
+\end{itemize}
+
+\newpage
+
+
+\item Theorems/results I might ask you to prove on the exam. In all cases, if the proofs use other theorems or lemmas in a minor way, you will not be required to prove those results. Feel free to ask me if you are not sure what would be required! {\bf I will ask you one or two of these; they will not be the only questions on the exam.}
+\begin{enumerate}
+
+
+\item Lagrange's theorem: $|H|$ divides $|G|$ and the number of distinct left costs of H in G is $|G|/|H|$. 
+
+The key to the proof is to write $G=a_1H\cup ..a_rH$ and they are all disjoint and equal to $|H|$
+
+Some IMPORTANT corollaries:\begin{enumerate}
+    \item $|a| \text{ divides } |G|$
+    \item group of prime order are cyclic since $|\langle a \rangle|$ divides prime
+    \item $a^{|G|}=e$
+    \item Fermat's little theorem: a is int p is prime, $a^p\mod p= a \mod p$
+\end{enumerate}
+
+
+\item The First Isomorphism Theorem: $\phi$ is a group homomorphism form G to $\bar{G}$. Then the maping from $G/Ker\phi$ to $\phi(G)$ given by $gKer\phi \longrightarrow \phi(g)$ is an isomorphism. 
+\begin{proof}
+well-defined (that is, the correspondence is independent of the particular coset representative chosen) and one-to-one follows directly from property 5 of Theorem 10.1: $\phi(a)=\phi(b)$ iff $aKer\phi=bKer\phi$. Show its order preserving by using the order preserving of $\phi$
+\end{proof}
+\item Cayley's theorem (any group is isomorphic to a subgroup of a permutation group)
+\begin{proof}
+Aim to find a group of permutations that G is isomorphic to, for $g\in G$,define 
+\[T_g(x)=gx \text{ for all }  x \in G\]
+Show this is a permutation. Then show
+\[\bar{G}=\{T_g|g\in G\}\]
+is a group, then use $\phi(g)=T_g$ to create isomorphism 
+\end{proof}
+
+
+\item Cauchy's theorem (any finite abelian group $G$ has an element of order $p$ for any prime which divides $|G|$).
+\begin{proof}
+Use induction on order of G, handle G with order 2. Then assume true when G has order less than p, show it's the case on p.
+
+find an element of prime order: if $|x|=m=qn$ then $|x^n|=q$. If p=q, we are done. 
+
+If not, since every subgroup of abelian group is normal, For arbitrary $x,y \in \bar{G}$, $x=g_a\langle x\rangle, y=g_b\langle x\rangle$ for some $g_a, g_b\in G$. Since G is abelian, x, y are hereby normal:
+
+\[xy= g_a\langle x\rangle g_b\langle x\rangle=g_a g_b\langle x\rangle= g_bg_a\langle x\rangle =g_b\langle x\rangle g_a\langle x\rangle=yx\]
+
+Thus $G'$ is abelian, it can be applied to our induction assumption. By Lagrange's theorem:
+\[|G/\langle x\rangle||\langle x\rangle|=|G|\]
+
+Since $|G|=mp, |\langle x\rangle|=q$, $p$ divides $|G'|$ and by induction assumption, there is an element in $G'$, denoted as $y\langle x\rangle$, that has order of p. Thus:
+\[(y\langle x\rangle)^p=y^p\langle x\rangle=\langle x\rangle\]
+Thus $y^p\in\langle x\rangle$. Either $y^p=e$, or $y^p$ has order q and we can find $y^q$ to be the element in G that have order p.
+\end{proof}
+
+
+\item $G/Z(G)$ is cyclic if and only if $G$ is abelian.
+\begin{proof}
+
+
+$\Rightarrow:$ 
+Abelian $\Longleftrightarrow$ $Z(G)=G$. So just show the only element in $G/Z(G)$ is $Z(G)$
+
+Every $a\in G$, $aZ(G)=g^n Z(G)$. Thus $a=g^nz$ for some $z\in Z(G)$. Since $g_n$ and $z$ commutes with $g$. i.e., in $C(g)$, closed, then $a\in C(g)$ as well. Thus $g\in Z(G)$ as well, $gZ(G)=Z(G)$
+
+$\Leftarrow$ Show $Z(G)=G$, show $G/Z(G)=\{eZ(G)\}$
+\end{proof}
+
+
+\item $\Q$ is not cyclic
+
+
+\item If $H\leq S_n$, then either every member of $H$ is even, or exactly half of the members of $H$ are even.
+
+\begin{proof}
+Since H is subgroup, every element must have inverse. The inverse share the same type as the original since identity is even. 
+
+It is trivial if all are even.
+
+If there are both even and odd elements, show $\{odd\}=\{even\}$ by composing odd with odd to show $\subseteq$ and compose even with odd to show $\supseteq$
+\end{proof}
+\item Determination of $\Aut(\Z/n\Z)$ (see HW 6)
+
+map generator to generator of $\Z/n\Z$
+\end{enumerate}
+\end{enumerate}
+
+
+
+
+\newpage
+\hrulefill
+
+
+Classification related:
+\begin{enumerate}
+    \item Classification of Group of Order p: $$\text{they are cyclic and this results from Lagrange}$$
+    \item Classification of Groups of Order 2p: $$\text{G is a group of order 2p and p is greater than 2 prime. } G \cong \Z_{2p} or $$
+    \item classification of Group of order 4: a group of order 4 $\cong \Z_4$ or $\Z_2\times \Z_2$ 
+    \item Classification of Groups of Order $p^2$: is isomorphic to either $\Z_{p^2} $ or $\Z_p \times \Z_p$. This also shows the group to be Abelian
+    \item cyclic group are abelian but not other way around.
+    \item Every finite Abelian group is a direct product of cyclic groups of prime-power order. Moreover, the number of terms in the product and the orders of the cyclic groups are uniquely determined by the group.
+\end{enumerate}
+\end{document}  
+
+%THIS IS WHERE THE DOCUMENT ENDS. Anything written after this will not appear on the pdf.

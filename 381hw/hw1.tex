@@ -1,0 +1,95 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use. 
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Homework 1}
+\author{The Author} 
+
+\begin{document}
+
+\begin{center}\noindent{\bf Math 381:  Homework \#1}\\Mingchen Li\\ \end{center}
+
+\hrulefill %This just makes a nice horizontal line. Useful if you like to separate your problems with lines!
+
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item $A\setminus B $
+        \item $A \cup B$
+        \item $A\setminus B \cup B\setminus A$
+        \newline $\Omega$ can be the set of all potential hiring outcomes in the teaching position. For example, let T denote the set of all people applying for the job. Then $\Omega=\mathcal{P}(T)$ which is set of all subsets of T.
+    \end{enumerate}
+    
+    \item \begin{enumerate}
+        \item[{\bf 1.9}:] If we subdivide the stick into 5 even pieces and number them from left to right. Then if the break point exist on the first and the last pieces, the smaller part will have the length less than $\dfrac{1}{5}$ of the original length. Thus the probability for the event will be 2/5.
+        \item[{\bf 1.11}:] Since the dart is thrown uniformly, the sample space is uniform and we can calculate the probability using the area of interest. Denote the event that the distance from the center is less than 2 as A.
+        \[P(A) =\dfrac{4\pi}{400}=\dfrac{\pi}{100}\]
+        Thus the probability of interest is $\dfrac{\pi}{100}\approx 3.14\%$
+        \end{enumerate}
+    
+    \item \begin{enumerate}
+        \item The probability space $\Omega= \{\infty, 1,2...\}$ and outcome is $\omega$ if all $\omega-1$ roll did not roll to 4 and the $\omega th$ did roll to 4. Since it is a fair die, the probability space for one roll is uniform. Thus
+        \[P\{\omega\}= \dfrac{5^{\omega-1}}{6^{\omega-1}}\times \dfrac{1}{6}=\dfrac{5^{\omega-1}}{6^{\omega}}\]
+        \item By Axiom of probability, 
+        \[1=P(\Omega)=P\{\infty\}+\sum_{k=1}^{\infty}P\{k\}\]
+        \[\sum_{k=1}^{\infty}P\{k\}=\dfrac{1}{6}\sum_{k=0}^{\infty}\dfrac{5^k}{6^k}=1\]
+        Thus $P\{\infty\}=0$  
+    \end{enumerate}
+    \item This setting does not work because the it does not fit the Axiom of Probability. For example, let $P(\N)$ denote the probability for all Natural Numbers. By construction, $P(\N)=1$. Then let $P(n)$ denote the probability for single natural number n. By construction, $P(1)=P(2)=P(n)=0$ for $\forall n\in \N$. According to the Axiom of probability 
+    \[ P(\N)=P(\bigcup^{\infty}_{i=1}n_i)=\sum^{\infty}_{i=1}P(n_i)\]
+    However $P(N)=1\neq 0=\sum^{\infty}_{i=1}P(n_i)$. Thus it has failed the Axiom.
+    
+    \item \begin{enumerate}
+        \item $P(A\cup B)= P(A)+P(B)-P(A\cap B)=0.65$
+        \item $P(A\cup B)^c =1-P(A\cup B)=0.35$
+        \item $P(A\setminus B)=P(A)-P(A\cap B)=0.25$
+    \end{enumerate}
+    \item Since $AB\subseteq A$, $AB\subseteq B$. According to properties followed by Axiom of Probability: $P(AB)\leq P(A)=0.4$. 
+    \newline Since $P(A)\cup P(B)\leq 1$ Thus $P(A)+P(B)-P(AB)\leq 1 \Rightarrow P(AB)\geq 0.1$
+    
+    \item \begin{enumerate}
+        \item The sample space $\Omega= \{(1,1,1,1), (1,1,1,2)...(6,6,6,6) \}$ which are ordered 4-tuples indicating each possible outcome under the order of throw. $P(\omega)=\dfrac{1}{6^4}$ for $\forall \omega \in \Omega$.
+        \item Since by our construction, the $\Omega$ is uniform, we shall follow the Fact 1.8 by counting the event to calculate probability. 
+        \newline For $P(A)$  we have 1125 outcomes that satisfy the demand. This yields a probability of $P(A)=86.8\%$. 
+        \newline For $P(B)$, we have 171 outcomes that satisfy the demand. Out of 1296 $\omega$s, this yields $P(B)=13.2\% $. 
+        \item The set $A\cup B$ include all possible outcomes. Since for four dice roll, it either have at least two five, or one and zero five.  $A \cap B =\emptyset \Rightarrow P(A\cup B)= P(A)+P(B)=1$
+        
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item If you do not switch, the probability to win a prize is equal to randomly choosing one door out of 3 which is $\dfrac{1}{3}$
+        \item If you do switch, when the initial choice is empty, the door that have not been opened or chosen has the prize. By switching to that door, the player wins. This scenario have two possibilities while if the player selected the correct door initially will lose instead. Thus given the door was chosen uniformly, the probability will be $\dfrac{2}{3}$.
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item We shall first label the committee contestants by number:$M=\{$1,2,...13$\}$ where $P=\{1...7\}$ are liberals and $C=\{8...13\}$ are conservatives. One possible sample space $\Omega =\{\{a,b,c,d,e\} |$ a,b,c,d,e are distinct members in M  $\}$. This indicates all possible committee members.
+        \newline The event $A=\{\{a,b,c,d,e\} |$ at least 3 members of are conservative  $\}$.
+        \item According to the Axiom of probability, we can break the even A into three disjoint pieces: the case where the resulting committee has precisely 3 conservatives $(A_1)$, 4 conservatives $(A_2)$, and 5 conservatives $(A_3)$. 
+        \newline For $A_1$, we can choose 3 conservatives without replacement ${6}\choose{3}$, then choose 2 liberals. ${7}\choose{2}$. This yields ${6}\choose{3}$ $\times$ $ {7}\choose{2}$ elements in $A_1$. In similar vein, we can calculate the size of $A_2, A_3$.
+        \newline Since the committee is chosen at uniform random, $\Omega$ is uniform. We can calculate the probability by counting the size of the event of interest.
+        
+        \[ P(A) = \dfrac{\# A_1+\#A_2 +\#A_3}{\#\Omega}=
+        \dfrac{{6\choose3}{7\choose2}+ {6\choose4}{7\choose1}+{6\choose5}{7\choose0}}
+        {{13\choose5}}=
+        \dfrac{20\times 21+ 15\times 7 + 6}{1287}\approx
+        0.413
+        \]
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}  

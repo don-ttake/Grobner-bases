@@ -1,0 +1,151 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newcommand{\stab}{\operatorname{stab}}
+\newcommand{\orb}{\operatorname{orb}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Inn}{\operatorname{Inn}}
+%\newcommand{\char}{\operatorname{char}}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Homework 10}
+\author{The Author}
+%\date{}			
+
+
+
+
+%THIS IS WHERE THE ACTUAL TEXT OF THE DOCUMENT BEGINS.				
+\begin{document}
+
+\begin{center}\noindent{\bf Math 333:  Homework \#10}\\Mingchen Li\\ \end{center}
+\thispagestyle{empty}
+
+
+
+\hrulefill %This just makes a nice horizontal line. Useful if you like to separate your problems with lines!
+
+
+
+
+
+\begin{enumerate}
+
+\item[{\bf 17.9:}] Construct a field of order 25.
+\begin{proof}
+Our goal is to utilize the property of irreducible polynomials. By inspection we pick $f(x)=x^2+x+1\in Z_5[x]$. To show this polynomial is irreducible, it is sufficient to show that there is no $0$ element since according to theorem 17.1 on Gallian, $f(x)$ is reducible if and only if $f(x)$has a zero in $F$. given that $\deg f(x)=2/3$ and $f(x)\in F[x]$. Thus, by plugging into all posible values into the polynomial, we have:
+\[f(0)=1\mod 5, f(1)=3\mod 5, f(2)=2 \mod 5, f(3)=3\mod 5, f(4)=1\mod 5\]
+
+Thus we know that $f(x)$ is irreducible. Then by the corollary: $f(x)$is irreducible if and only if $F[x]/ \langle f(x)\rangle$ is a field. Thus we have $F[x]/ \langle f(x)\rangle=\{ax+b+\langle x^2+x+1 \rangle|a,b\in Z_5\}$ Thus the field has $5\times 5 =25$ elements. 
+\end{proof}
+
+
+
+\newpage
+\item[{\bf 17.17 \& 18}] Let $p$ be a prime.
+\begin{enumerate}[a)]
+\item Show that the number of reducible polynomials over $\Z/p\Z$ of the form $x^2+ax+b$ is $p(p+1)/2$. Then, determine the total number of reducible quadratic (of degree exactly 2) polynomials over $\Z/p\Z$.
+\item Determine the number of irreducible polynomials over $\Z/p\Z$ of the form $x^2+ax+b$. Then, determine the total number of irreducible quadratic (of degree exactly 2) polynomials over $\Z/p\Z$. 
+\end{enumerate}
+\begin{proof}
+The overall scheme is to count the possible solution sets 
+\begin{enumerate}[a)]
+    \item By the definition of reducibility, since the given polynomial has order of two, it is reducible if it is of the form $f(x)=(x-y)(x-z)$. Here we aim to count the all possible $(y,z)$ that satisfy this expression. Since for each fixed $y$, we have $p-y$ options for z, thus given there are $p$ possible options for $y$, there are: 
+    \[\sum_{i=0}^{p-1}(p-i)=\dfrac{p(p+1)}{2}\]
+    Thus there are $\dfrac{p(p+1)}{2}$ reducible polynomials of the given form. Then for arbitrary quadratic polynomial of the form $f(x)=ax^2+bx+c$, we can express it as $a(x+a^{-1}bx+a^{-1}c)$. Since the polynomial has degree of exactly 2, it excludes the possibility that $a=0$. So given that for each fixed $a$, there are  $\dfrac{p(p+1)}{2}$ possible reducible polynomials, there are hereby $(p-1)\times  \dfrac{p(p+1)}{2}= \dfrac{p^3-p}{2}$ possible quadratic reducible polynomials.
+    \item Since the number of irreducible polynomial of the form $x^2+ax+b$ is all polynomial of the same form minus all reducible polynomial of the same form. there are $p^2$ possible polynomials since for each $a,b$ there are $p$ choices. Then we have the number of irreducible polynomial of the given form to be $p^2-\dfrac{p(p+1)}{2}=\dfrac{p(p-1)}{2}$.
+    
+    Then in similar vein we have $p^3$ possible polynomials since there are p choices for $a,b,c$. Thus the number of irreducible quadratic polynomial is 
+    \[p^3-\dfrac{p^3-p}{2}=\dfrac{p^3+p}{2}\]
+\end{enumerate}
+\end{proof}
+
+\newpage 
+\item[{\bf Problem 4:}] Let $\Z[\sqrt{d}] = \{a+\sqrt{d}\,|\, a,b,\in \Z\}$; note that this forms a ring for any integer $d\in \Z$ (You need not prove this.) Suppose additionally that $d$ is not $1$, and is not divisible by the square of a prime (i.e., $d$ is effectively ``squarefree" - its prime factorization contains only unique primes). Define the {\it norm} function $N:\Z[\sqrt{d}]\rightarrow \Z_{\geq 0}$ by $$N(a+b\sqrt{d}) = |a^2-db^2|$$
+
+Prove the following four properties about the norm function:
+\begin{itemize}
+\item $N(x)=0$ if and only if $x=0$.
+\item $N(xy) = N(x)N(y)$ for all elements $x,y$
+\item $x$ is a unit if and only if $N(x)=1$
+\item If $N(x)$ is prime, then $x$ is irreducible in $\Z[\sqrt{d}]$.
+\end{itemize}
+\hrulefill
+\begin{itemize}
+    \newline
+    \item $\Rightarrow:$ if $N(x)=0$, then $|a^2-db^2|=0$ and $a^2=db^2$ which can only be true when $a,b=0$ since otherwise $d$ must be $1$ or multiple of prime square, both of which contradicts our assumption of d. Thus we have $x=0$
+    
+    $\Leftarrow: $ if $x=0$, then by definition $N(x)=|0^2-0^2|=0$
+    \item express $x=(a_x +b_x\sqrt{d}), y=(a_y +b_y\sqrt{d})$. Then 
+    \begin{equation}
+    \begin{split}
+        N(xy)&=N((a_xa_y+b_xb_yd)+(a_yb_x+a_xb_y)\sqrt{d})\\
+        &=|(a_xa_y+b_xb_yd)^2- d(a_yb_x+a_xb_y)^2 | \\ 
+        &=|a_x^2a_y^2+db_x^2b_y^2-da_x^2b_y^2-da_y^2b_x^2|\\
+        &=|a_x^2-db_x^2||a_y^2-db_y^2|\\
+        &=N(a_x+b_x\sqrt{d})N(a_y+b_y\sqrt{d})
+    \end{split}
+    \end{equation}
+    \item $\Rightarrow:$ If $x$ is a unit, then there is some $y\in \Z$ such that $xy=1$. Then $N(xy)=N(1)=1$. By property 2 we just shown, $N(xy)=N(x)N(y)$. Since the norm function $N$ has range of non-negative integers, the only possible candidate for $N(x)$ is hereby 1.
+    
+    $\Leftarrow$ If $N(x)=1$, express $x=(a +b\sqrt{d})$, then by definition we have:
+    \[\pm1=a^2-db^2=(a+b\sqrt{d})(a-b\sqrt{d})\]
+    Then by definition we have the $a+b\sqrt{d}$ to be an unit. 
+    
+    \item Assume that $N(x)$ is prime, then assume that $x$ is reducible, then there are some $a,b\in \Z[\sqrt{d}]$, $a,b$ are not units, such that $x=ab$. By property 2, we know $N(x)=N(ab)=N(a)N(b)$. By property 3 we know that $N(a),N(b)\neq 1$. Thus $N(a)N(b)$ is not a prime. However this contradicts the assumption that $N(x)$ is a prime. 
+\end{itemize}
+
+
+\newpage
+\item[{\bf Problem 18.13}]  Show that in $\Z[\sqrt{-5}]$, the element $21$ does not factor uniquely as a product of irreducibles.
+\begin{proof}
+The main strategy for this proof is to mimic example 8 in Gallian's chapter 18.
+We know that $21=3\times 7=(1+2\sqrt{5})(1-2\sqrt{5})$. We claim that each of these four factors is irreducible over $\Z[\sqrt{-5}]$. We shall assume each factor is reducible and use proof by contradiction:\begin{enumerate}
+    \item Assume that there exists $x,y\in \Z[\sqrt{-5}]$ such that $x,y\neq \pm 1, xy=3$. Then by using the norm function given, we know that $N(xy)=N(3)=9$. Then given the property of the norm function, ew have $N(xy)=N(x)N(y)$. Since neither $N(x),N(y)=1$ given that $x,y$ are not units, we have $N(x)=3$ which is impossible since $x\in \Z[\sqrt{-5}]$ and no integer a,b can satisfy $a^2+5b^2=3$.
+    \item In similar vein and to inherent the notation. Assume that there is some $x,y\in \Z[\sqrt{-5}]$ such that $x,y\neq \pm 1, xy=7$. Then $49=N(xy)=N(x)N(y)$. This leaves $N(x)=7$ which is again impossible in $\Z[\sqrt{-5}]$ for the same reason above.
+    \item Assume that there is some $x,y\in \Z[\sqrt{-5}]$ such that $x,y\neq \pm 1, xy=1+2\sqrt{5}$. Then $21=N(xy)=N(x)N(y)$, which makes either $N(x)$ or $N(y)$ to be 3 and it is impossible since $x,y\in \Z[\sqrt{-5}]$ and no integer a,b can satisfy $a^2+5b^2=3$. 
+    \item Assume that there is some $x,y\in \Z[\sqrt{-5}]$ such that $x,y\neq \pm 1, xy=1-2\sqrt{5}$. Then $21=N(xy)=N(x)N(y)$, which makes either $N(x)$ or $N(y)$ to be 3 and it is impossible since $x,y\in \Z[\sqrt{-5}]$ and no integer a,b can satisfy $a^2+5b^2=3$. 
+\end{enumerate}
+\end{proof}
+
+\newpage
+\item[{\bf Problem 18.21}]  Show that in $\Z[\sqrt{-5}]$, the element $1+3\sqrt{-5}$ is irreducible element, but is not a prime element. [Hint: It may help to trace through the argument in Example 1 of Chapter 18, which is similar.]
+\begin{proof}
+Assume that it is reducible and there is some $x,y\in \Z[\sqrt{-5}]$ such that $x,y\neq \pm 1, xy=1+3\sqrt{5}$. Then $46=N(xy)=N(x)N(y)$. This leaves either $N(x)$ or $N(y)$ to be 2 and it is impossible since $x,y\in \Z[\sqrt{-5}]$ and no integer a,b can satisfy $a^2+5b^2=2$. Thus $1+3\sqrt{-5}$ is irreducible element.
+
+To show that $1+3\sqrt{-5}$ is not prime, we observe that $(1+3\sqrt{-5})(1-3\sqrt{-5})=46=2*23$. Assume that $1+3\sqrt{-5}$ is prime, then by definition we know that $1+3\sqrt{-5}$ divides $2$. Then $(1+3\sqrt{-5})(a+b\sqrt{5})=(a-15b)+(3a+b)\sqrt{5}=2$. Thus it asks $a-15b=2$ and $3a+b=0$ which is impossible. Thus $1+3\sqrt{-5}$ is not prime.
+\end{proof}
+\newpage
+\item[{\bf Problem 18.17}]  Show that in $\Z[\sqrt{6}]$, the element $7$ is irreducible, even though $N(7)$ is not prime (this shows that the converse to the fourth property above is not generally true). [Hint: It may help to read through Example 2 of Chapter 18.]
+\begin{proof}
+Assume that there exists $x,y\in \Z[\sqrt{6}]$ such that $x,y\neq \pm 1, xy=7$.Then we have $49=N(7)=N(xy)=N(x)N(y)$. Since neither $x,y$ are unit, this leaves $N(x)=7$. Let $x=a+b\sqrt{6}$. Then this implies that $|a^2-6b^2|=7$ and $a^2-6b^2=\pm 7$. Thus we can rewrite the equation as $a^2=6b^2\mod 7$. The only solution in this case is let $a=b=0$, which is false.
+\end{proof}
+\hrulefill
+
+\item[{\bf BONUS}] Show that $x^4+1$ is reducible over $\Z/p\Z$ for every prime $p$, but is irreducible over $\Q$. (Note: this shows that there is no hope for a converse of the Mod $p$ irreducibility test - reducibility mod $p$ is not sufficient to indicate reducibility over $\Q$.)
+
+
+
+\end{enumerate}
+
+\end{document}  
+
+%THIS IS WHERE THE DOCUMENT ENDS. Anything written after this will not appear on the pdf.

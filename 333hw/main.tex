@@ -1,0 +1,135 @@
+\documentclass[11pt, one side]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Homework 4}
+\author{Zejun Gao}
+%\date{}			
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{HW \#3}
+\lhead{Zejun Gao}
+\rfoot{Page \thepage}
+
+
+%THIS IS WHERE THE ACTUAL TEXT OF THE DOCUMENT BEGINS.				
+\begin{document}
+\begin{enumerate}
+
+\item[{\bf Problem 1:}] First, define the {\it stabilizer} of $s$ in $G$ to be $$stab_G(s)=\{\varphi \in G\,|\, \varphi(s) = s\}.$$ That is, $stab_G(s)$ is the set of elements in $G$ which fix $s$. Prove that $stab_G(s)$ is a subgroup of $G$ for any $s\in S$.
+
+\pagebreak
+
+\item[{\bf Problem 2:}] Define the {\it orbit} of $s$ under $G$ to be the set $$orb_G(s) = \{\phi(s)\,|\,\phi\in G\}.$$ That is, $orb_G(s)$ is the set of all places $s$ can be mapped by elements of $G$.  Prove that the set of orbits $ORB = \{orb_G(s)\,|\, s\in S\}$ form a partition of $S$.
+
+\pagebreak
+
+\item[{\bf Problem 3:}] For any element $s\in S$, define a function $T_s$ from the set of left cosets of the stabilizer to the elements in the orbit of $s$ via the mapping $$T_s(\varphi\,stab_G(s)) = \varphi(s).$$
+
+Prove that this function is a well-defined\footnote{this is not ``obvious," as a coset may be denoted using any of its elements!} bijection.
+
+\pagebreak
+
+\item[{\bf Problem 4:}] Using the previous problem\footnote{(Hint: and another well-known, named, algebraic counting-type theorem...)}, prove the Orbit-Stabilizer Theorem: 
+
+\begin{theorem}[Orbit-Stabilizer] Let $G$ be a finite group of permutations of a set $S$. Then, for any $s\in S$, $$|G|=|orb_G(s)|\,|stab_G(s)|.$$
+\end{theorem}
+
+\pagebreak
+
+\item[{\bf 7.45}]  Let $G =\{ (1), (12)(34), (1234)(56), (13)(24), (1432)(56), (56)(13), (14)(23), (24)(56)\}$. 
+\begin{enumerate}[a)]
+\item Find the stabilizer of 1 and the orbit of 1.
+\item Find the stabilizer of 3 and the orbit of 3.
+\item Find the stabilizer of 5 and the orbit of 5.
+\end{enumerate}
+
+\begin{enumerate}[a)]
+\item $stab_G(1)=\{(1), (24)(56)\}.$\\ \\    
+      $orb_G(1)=\{1, 2, 3, 4\}.$ \\
+      
+\item $stab_G(3)=\{(1), (24)(56)\}.$\\ \\
+      $orb_G(3)=\{1, 2, 3, 4\}.$ \\
+      
+\item $stab_G(5)=\{(1), (12)(34), (13)(24), (14)(23)\}.$\\ \\
+      $orb_G(5)=\{5, 6\}.$
+
+\end {enumerate}
+
+\pagebreak
+
+\item [{\bf 7.62:}]  Use the Orbit-Stabilizer theorem to calculate the order of the following groups (note: each of these is a group of rotations of a platonic solid). 
+
+\begin{enumerate}
+\item The group of rotations of a regular tetrahedron (a solid with four congruent equilateral triangles as faces).
+\item The group of rotations of a regular octahedron (a solid with eight congruent equilateral triangles as faces).
+\item The group of rotations of a regular dodecahedron (a solid with 12 congruent regular pentagons as faces).
+\item The group of rotations of a regular icosahedron (a solid with 20 congruent equilateral triangles as faces).
+\end{enumerate}
+
+\begin{enumerate}
+
+\item Let $G$ be the group of rotations of a regular tetrahedron. A regular tetrahedron has 4 identical regular triangles as its faces, so we only need to consider the position of the 4 vertices. Label the vertices by $\{1, 2, 3, 4\}$ where 1 is the top point and $\{2, 3, 4\}$ are the vertices of the bottom regular triangle. Consider vertex 1: 
+Since 1 can be moved to any vertex of the tetrahedron, $orb_G(1)=\{1, 2, 3, 4\}$ and $|orb_G(1)| = 4.$ If we fixed 1, there are 3 possible rotations $(1), (234), (243)$, so $stab_G(1)=\{(1), (234), (243)\}$ and $|stab_G(1)|=3.$\\
+Hence, by Orbit-Stabilizer theorem, $|G|=|orb_G(1)||stab_G(1)|=12.$\\
+
+\item Let $G$ be the group of rotations of a regular octahedron. Similar to (a), label the 6 vertices by $\{1,2,3,4,5,6\}$ where 1 is the top point and 6 is the botton point. Consider vertex 1: 
+Since 1 can be moved to any vertex, $|orb_G(1)|=8 $. If fix 1, there are 4 possible rotations $(1), (2345), (24)(35), (2543)$, so $|stab_G(1)|= 4.$ \\
+Then, $|G|=|orb_G(1)||stab_G(1)|=36.$\\
+
+\item Let $G$ be the group of rotations of a regular dodecahedron, and label its vertices by $\{1,2,...,20\}.$ Consider vertex 1: Since 1 can be moved to any vertex, $|orb_G(1)|=20.$ If fix 1, there are 3 possible rotations because vertex 1 is conncted to 3 regular pantagons, so $|stab_G(1)|= 3.$\\
+Then, $|G|=|orb_G(1)||stab_G(1)|=60.$\\
+
+\item Let $G$ be the group pf rotations of a regular icosahedron, and label its vertices by $\{1, 2,..., 12\}.$ Consider vertex 1: Since 1 can be moved to any vertex, $|orb_G(1)|=20.$ If fix q, there are 5 possible rotations since 1 is to 5 regular riangles, so $|stab_G(1)|= 5$.\\
+Then, $|G|=|orb_G(1)||stab_G(1)|=60.$
+
+\end{enumerate}
+
+\pagebreak
+
+\item[{\bf 7.25}] Suppose that $G$ is an Abelian group with an odd number of elements. Show that the product of all the elements of $G$ is the identity.
+
+\begin{proof}
+Given $G$ is a group with odd number of elements, $G = \{ e, g_1, g_2, ... ,g_{2n}\}$ for $n \in \N.$ First, show that \forall $ g_i \in G\setminus\{e\}$, $g_i \neq g_i^{-1}.$ \\ \forall $ g_i \in G\setminus\{e\}$, if $g_i = g_i^{-1}$, then $g_i^{2}=g_i^{-1}g_i=e$. And because $g_i\neq e$, $|g_i|\neq 1$, so $|g_i|=2.$ However, since $|G|$ is odd, $2$ does not divide $|G|$, so we prove by contradiction that \forall $ g_i \in G\setminus\{e\}$, $g_i \neq g_i^{-1}.$ \\
+Then, show that the product of all elements of G is the identity.\\
+Given $g_i\neq g_i^{-1},$ we can find a list of n distinct $g_i$s such that $G = \{e, g_1, g_1^{-1}, g_2, g_2^{-1},..., g_n, g_n^{-1}\}.$ Then the product of all elements $= eg_1g_1^{-1}g_2g_2^{-1},...g_ng_n^{-1}$ = e because by Abelian the order of application doesn't matter.\\
+Therefore the product of all elements of $G$ is the identity.
+\end{proof}
+
+\pagebreak
+
+\item[{\bf Problem 8:}] (These two exercises together constitute a single problem.)
+\begin{enumerate}
+\item[{\bf 3.73}] Consider the set $H = \{a+bi\in \C\,|\, a^2 + b^2 = 1\}$. Prove that $H$ forms a subgroup of $\C^*$, the group of nonzero complex numbers under multiplication.  Describe the elements of $H$ geometrically.
+
+
+
+
+\pagebreak
+
+\item[{\bf 7.14}] Let $H$ be as in the previous problem. Give a geometric description  of the cosets of $H$ in $\C^*$ (with proof).\\
+\end {enumerate}
+
+\end {enumerate}
+
+\end{document}

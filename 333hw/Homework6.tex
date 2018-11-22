@@ -1,0 +1,227 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newcommand{\stab}{\operatorname{stab}}
+\newcommand{\orb}{\operatorname{orb}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Inn}{\operatorname{Inn}}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Homework 5}
+\author{The Author}
+%\date{}			
+
+
+
+
+%THIS IS WHERE THE ACTUAL TEXT OF THE DOCUMENT BEGINS.				
+\begin{document}
+
+\begin{center}\noindent{\bf Math 333:  Homework \#6}\\Mingchen Li\\ \end{center}
+\thispagestyle{empty}
+
+
+
+\hrulefill %This just makes a nice horizontal line. Useful if you like to separate your problems with lines!
+
+In the first four problems, you will prove some results to related to the Fundamental Theorem of Finite Abelian Groups.
+
+
+
+\begin{enumerate}
+
+
+
+\item[{\bf Problem 1:}] Let $m$ and $n$ be relatively prime positive integers. Prove that $\Z/m\Z\times \Z/n\Z\cong \Z/(mn)\Z$.
+\begin{proof}
+Consider the mapping $\varphi:(a,b)\mapsto ab$ mod $mn$. We aim to show that this is an isomorphism. 
+\begin{enumerate}
+    \item[Bijection: ] Take arbitrary $x\in \Z/(mn)\Z$, by the Fundamental theorem of Arithmetic, $x= x_1x_2..x_k$ where each $x_i$ is distinct prime. Since $gcd(m,n)=1$, $m, n$ do not share any prime divisor. Thus for all $x_i$ it is either a divisor or $m$ or $n$. We can then rearrange the expression of $x$ to this:
+    \[x=x_m_1x_m_2...x_m_ix_n_1x_n_2...x_n_j\]
+    Where $x_m_i$s are prime divisor of $x$ as well as $m$. Then consider $x_m=\prod_{a=1}^{i}x_m_a$, and $x_n$ in similar definition. $x_m\in \Z/m\Z$ and similarly $x_n\in \Z/n\Z$. Thus $\varphi(x_m, x_n)= x$. $\varphi$ is surjective.
+    
+    If there are some $(x_m, x_n)$, $(y_m, y_n)$ such that $\varphi(x_m, x_n)= x =\varphi(y_m, y_n)$. Then using the same setting above, $x$ can be break into two parts and $x_m=x_m_1x_m_2...x_m_i=y_m$. Since multiplication is associative and commutative, $x_m =y_m$ and the same relationship holds for $x_n$ and $y_n$. Thus $\varphi$ is injective.
+    
+    \item[Preserve operation: ] Let $(x_m, x_n)$, $(y_m, y_n)$ be arbitrary elements in $\Z/m\Z\times \Z/n\Z$. We aim to show $\varphi(x_my_m, x_ny_n)=\varphi(x_m, x_n)\varphi(y_m, y_n)$
+    
+    We know $\varphi(x_my_m, x_ny_n)=x_my_mx_ny_n$ mod $mn$ 
+    
+    $\varphi(x_m, x_n)\varphi(y_m, y_n)= x_mx_n\text{ mod } mn \times_{mn} y_my_n \text{mod } mn = x_mx_ny_my_n \text{ mod } mn$
+    
+    Since modular multiplication is associative, the mapping hereby preserves operation.
+\end{enumerate}
+\end{proof}
+
+\newpage
+\item[{\bf Problem 2:}] \begin{itemize}
+\item  Let $G$ be an Abelian group. Show that for any $n\in \N$, the set $\{x\,|\, x^n=e\}$ forms a subgroup of $G$. 
+\item Let $G$ be an abelian group, and $n\in \N$. Show that $G^n = \{x^n\,|\, x\in G\}$ forms a subgroup of $G$.
+\end{itemize}
+
+\begin{itemize}
+    \item[proof for part 1:] Let $n\in \N$ be arbitrary, we aim to use two step strategy to show that $H=\{x\,|\, x^n=e\}$ forms a subgroup of $G$.
+    
+    \begin{enumerate}
+        \item[not empty:] We know $e^n=e$, so $e\in H$, and H is not empty.
+        \item[closed: ] take arbitrary $a,b \in H$, $a^n=b^n=e$. Since $G$ is an abelian group, $(ab)^n=abababab...ab= aa...abbb..b=a^nb^n=ee=e$. Thus it is closed.
+        \item[exists inverse:] take arbitrary $a\in H$, we know $a^n=aa^{n-1}=e$. At the same time, $(a^{n-1})^n= (a^{n})^{n-1}=e^{n-1}=e$. Thus $a$ has inverse in $H$ being $a^{n-1}$.
+        
+    \end{enumerate}
+    \item[proof for part 2:] Let $n\in \N$ be arbitrary, we aim to use two step strategy to show that $H=\{x^n\,|\, x\in G\}$ forms a subgroup of $G$.
+    \begin{enumerate}
+        \item[not empty:] We know $e\in G$ regardless what size of G is. And $e^n=e$, thus $e\in H$
+        \item[closed: ]Take arbitrary $a^n, b^n\in H$, Since G is a group, it is hereby closed. $ab\in G$. By the defition of $H$, we know $(ab)^n\in H$ 
+        
+        At the same time, since $G$ is abelian, $a^nb^n=aa...abbb..b=ababab...ab=(ab)^n\in H$
+        
+        \item[exists inverse: ] Take arbitrary $a^n\in H$, we know that $a$ has inverse $a^{-1}\in G$. By definition of group H, we know $(a^{-1})^n=a^{-n}\in H$. Since G is an abelian group, we have
+        
+        $a^na^{-n}=aa...aa^{-1}a^{-1}..a^{-1}=aa^{-1}aa^{-1}...aa^{-1}=e^n=e$. Thus $a^{-n}$ is the inverse of $a^n$. 
+    \end{enumerate}
+\end{itemize}
+
+
+\newpage
+\item[{\bf Problem 3:}] List (with justification) all non-isomorphic Abelian groups...
+\begin{itemize}
+\item ...of order 30
+\item ...of order 27
+\item ...of order 24
+\end{itemize}
+By the Fundamental Theorem of Finite Abelian Group
+
+every finite Abelian group $G$ is isomorphic to a direct product of the form:
+\[\Z/p_1^{n_1}\Z \times \Z/p_2^{n_2}\Z...\times\Z/p_k^{n_k}\Z\]
+Where $|G|=\prod_{i=1}^{k}p_i^{n_i}$, $p_i$s are not necessarily distinct, $n\geq 1$, $n\in \N$. 
+
+Moreover, the number of terms in the product and the orders of the cyclic groups are \textbf{uniquely} determined by the group.
+
+The uniqueness of partition guarantees that each two distinct partitions of group $G$ yields distinct, isomorphism classes. With this knowledge, we can break the finite Abelian groups into different distinct isomorphism classes.
+
+\begin{enumerate}
+    \item[$|G|$= 30:] \begin{itemize}
+        \item $\Z/2\Z \times \Z/3\Z\times\Z/5\Z$
+    \end{itemize}
+    \item[$|G|$= 27:] \begin{itemize}
+        \item $\Z/3\Z \times \Z/3\Z\times\Z/3\Z$
+        \item $\Z/9\Z \times \Z/3\Z$
+        \item $\Z/27\Z$
+    \end{itemize}
+    \item[$|G|$= 24:]\begin{itemize}
+        \item $\Z/2\Z \times \Z/2\Z\times\Z/2\Z\times\Z/3\Z$
+        \item $ \Z/4\Z\times\Z/2\Z\times\Z/3\Z$
+        \item $ \Z/8\Z\times\Z/3\Z$
+
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+\item[{\bf Problem 4:}] Complete the statement, and prove your result: \\
+
+
+{\it There exists exactly one Abelian group of order $n$ (up to isomorphism) if and only if $n=p_1p_2p_3..p_k$ where each $p_i$ is distinct prime }
+
+
+\hrulefill
+
+\begin{proof}
+Assume that it is not the case. That there is an unique Abelian group $G$ of order $n$ where $n=p_1^{r_1}p_2^{r_2}p_3^{r_3}..p_k^{r_k}$ and at least one of the $r_i$s is greater than 1. Without loss of generality, let $r_1=r_{1a}+r_{1b}$ where $r_{1a}, r_{1b}\geq 1$. Then by the Fundamental Theorem of Finite Abelian Group, there are at least two distinct isomorphism class of order $n$: \begin{itemize}
+    \item $\Z/p_1^{r_{1a}}\Z \times \Z/p_1^{r_{1b}}\Z...\times\Z/p_k^{r_k}\Z$
+    \item $\Z/p_1^{r_1}\Z \times ...\times\Z/p_k^{n_k}\Z$
+\end{itemize}
+Which arrives to a contradiction. 
+\end{proof}
+
+\newpage
+\item[{\bf Problem 5:}] 
+\begin{itemize}
+\item Let $G$ be a group, and define the set of {\it automorphisms} of $G$ to be the set $$\Aut(G) = \{\varphi:G\rightarrow G\,|\, \varphi \text{ is an isomorphism }\}$$
+Prove that $\Aut(G)$ forms a group under composition.
+\begin{proof}
+To show $\Aut(G)$ forms a group, we aim to show the following properties: \begin{itemize}
+    \item[Exists identity:] Consider the identity map e :$G\rightarrow G$. Given an arbitrary $\varphi\in \Aut(G)$, we know $\varphi \circ e= e \circ \varphi =\varphi$ by function composition. At the same time, e is bijection and $e(ab)=ab=e(a)e(b)$ for $a,b\in G$. Thus e is an isomorphism.
+    \item[Exists inverse:] Consider an arbitrary $\varphi \in \Aut(G)$, since $\varphi$ is bijection, it has an inverse function $\varphi^{-1}: G\rightarrow G$. And $\varphi\varphi^{-1}=\varphi^{-1}\varphi=e$.
+    
+    Then we aim to show $\varphi^{-1}$ is an isomorphism. For arbitrary $a,b \in G$, we know there are $x,y\in G$ such that $\varphi(x)=a$, $\varphi(y)=b$. Since $\varphi$ is isomorphism, we know $$\varphi^{-1}(ab)=\varphi^{-1}(\varphi(xy))=xy$$
+    $$\varphi^{-1}(a)\varphi^{-1}(b)=\varphi^{-1}(\varphi(x))\varphi^{-1}(\varphi(y))=xy$$
+    Thus we have found the inverse. 
+    \item[Closed:] Take arbitrary $\varphi_1, \varphi_2\in \Aut(G)$, since they are both isomorphism, we have:
+    \[\varphi_1\circ \varphi_2(ab)=\varphi_1(\varphi_2(a)\varphi_2(b))=\varphi_1(\varphi_2(a))\varphi_1(\varphi_2(b))= \varphi_1\circ \varphi_2(a)\varphi_1\circ \varphi_2(b)\]
+    Thus it is closed.
+    \item[Associative:] 
+\end{itemize}
+\end{proof}
+\item Determine\footnote{This means that you need to determine what (known) group $\Aut(G)$ is isomorphic to. It may help to note that both $\Z$ and $\Z/n\Z$ are cyclic groups.} $\Aut(\Z)$, where $\Z$ is the group of integers under addition.  Then, determine $\Aut(\Z/n\Z)$ for any integer $n$.
+\begin{proof}
+Since $\Z$ is generated by either 1 or -1, for arbitrary $\varphi \in \Aut(G)$, it have to map generators to generators to be surjective. Thus it is crucial to determine which of the two generator does the generators of $\Z$ is mapped to. For example, if $\varphi(1)=n$ and $|n|\neq 1$, then the image of the map will not be full $\Z$ but only the multiples of $n$. Thus there are essentially two classes of isomorphisms: $\varphi_1(1)=1$ and $\varphi_2(1)=-1$. Thus $\Aut(\Z)\cong \Z/2\Z$.
+
+In similar vein, the $\Aut(\Z/n\Z)$ must map generator to generators. Since the map target of $\varphi(1)$ will determine the rest of the elements' mapping, 1 must map to generator of $\Z/n\Z$. According to earlier knowledge, we know an element of $\Z/n\Z$ has order n if it is relatively prime to n. Thus there are $\phi(n)$ possible isomorphic classes in $\Aut(\Z/n\Z)$ where $\phi$ is Euler phi function. $\Aut(\Z/n\Z) \cong \Z/\phi( n)\Z)$
+\end{proof}
+\end{itemize}
+
+
+\newpage
+\item[{\bf Problem 6:}] 
+\begin{itemize}
+\item Let $G$ be a group, and $a\in G$. Define the function $\phi_a:G\rightarrow G$ by $\phi_a(x) = axa^{-1}$. Prove that $\phi_a$ is an automorphism of $G$ (called the {\it inner automorphism of $G$ induced by $a$}).
+\item Prove that the set of inner automorphisms, denoted $\Inn(G)$ of a group $G$ forms a subgroup of $\Aut(G)$.
+\end{itemize}
+\begin{itemize}
+    \item[proof for part 1: ] We aim to show that $\phi_a$ is an isomorphism. We shall begin to show that it is homomorphism. 
+    
+    Take arbitrary $x, y\in G$, $\phi_a(xy)=axya^{-1}=axa^{-1}aya^{-1}=\phi_(x)\phi_a(y)$
+    
+    Take arbitrary $x, y \in G$, if $\var_a(x)=\var_a(y)$, then $axa^{-1}=aya^{-1}$ and $x=y$ by canceling the terms. Thus $\var_a$ is injective.
+    
+    For arbitrary $g\in G$, $a^{-1}ga\in G$ since $G$ is closed. Then $\var_a(a^{-1}ga)=g$. Thus $\var_a$ can map to any $g\in G$ hereby Surjective. 
+    \item[proof for part 2:]
+    Since identity mapping is an inner automorphism, denoted as $\phi_e(x)=exe^{-1}=x$, $\Inn(G)$ is not empty. 
+    
+    Let $\phi_a, \phi_b\in \Inn(G)$ be arbitrary. Then $(\phi_b)^{-1}(x)=b^{-1}(x)b$ since \[(\phi_b)^{-1}(\phi_b)(x)=(\phi_b)(\phi_b)^{-1}(x)=bb^{-1}xb^{-1}b=x\]
+    Thus by the one step subgroup test, we have: \[\phi_a(\phi_b)^{-1}(x)=ab^{-1}xba^{-1}=\phi_{ab^{-1}}(x)\in \Inn(G)\]
+    
+\end{itemize}
+\newpage
+\item[{\bf Problem 7:}] Recall that for any group $G$, $Z(G)$ denotes the center of $G$ (the elements which commute with all other elements). Prove that $G/Z(G)\cong \Inn(G)$ for any group $G$.
+\begin{proof}
+Consider the mapping: $\Phi(g)=\phi_g $ for $g\in G$. We aim to show it satisfy the condition of First Isomorphism Theorem:
+
+For arbitrary $\phi_g \in \Inn (G)$, we know $\Phi(g)$ maps to this automorphism. Thus $Phi$ is surjective.
+
+For arbitrary $g, h\in G$, $\Phi(gh)=\phi(gh)$. Since $\phi$ is automorphism, it preserves operation. $=\phi(g)\phi(h)=\Phi(g)\Phi(h)$. Thus $\Phi$ is an homomorphism. 
+
+If $g\in Z(G)$, by commutivity: $\Phi(g)=\phi_g=gxg^{-1}=gg^{-1}x=x$. Thus $g\in Ker(\Phi)$. If $g\in  Ker(\Phi)$, then $\Phi(g)=$ identity function. Then $gxg^{-1}=x$ for arbitrary $x\in G$. So $gx=xg$, meaning g commutes with arbitrary element in $G$, $g\in Z(G)$. $Ker(\Phi)=Z(G)$.
+
+Thus we can use the First isomorphism theorem and conclude that $G/Z(G)\cong \Inn(G)$ for any group $G$.
+
+\end{proof}
+\newpage
+\item[{\bf Problem 8:}] Using the previous results, and a result from previous homework, prove that if $G$ is non-Abelian, then $\Aut(G)$ is not cyclic. Give an example to show that the converse of this theorem doesn't hold (i.e., there are Abelian groups such that $\Aut(G)$ is not cyclic.)
+
+\begin{proof}
+Given G is not abelian, suppose that $\Aut(G)$ is cyclic. Then since $\Inn(G)$ is a subgroup of $\Aut(G)$, $\Inn(G)$ is cyclic as well. However, by problem 7 we know $G/Z(G)\cong \Inn(G)$. Since isomorphism preserves cyclic property, we know $G/Z(G)$ is also cyclic. By the $G/Z$ theorem on Gallian: if $G/Z(G)$ is cyclic, then $G$ is abelian. Thus we have arrived at a contradiction.
+\end{proof}
+
+\end{enumerate}
+
+\end{document}  
+
+%THIS IS WHERE THE DOCUMENT ENDS. Anything written after this will not appear on the pdf.

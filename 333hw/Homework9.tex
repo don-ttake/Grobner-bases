@@ -1,0 +1,179 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newcommand{\stab}{\operatorname{stab}}
+\newcommand{\orb}{\operatorname{orb}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Inn}{\operatorname{Inn}}
+%\newcommand{\char}{\operatorname{char}}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Homework 9}
+\author{The Author}
+%\date{}			
+
+
+
+
+%THIS IS WHERE THE ACTUAL TEXT OF THE DOCUMENT BEGINS.				
+\begin{document}
+
+\begin{center}\noindent{\bf Math 333:  Homework \#9}\\Mingchen Li\\ \end{center}
+\thispagestyle{empty}
+
+
+
+\hrulefill %This just makes a nice horizontal line. Useful if you like to separate your problems with lines!
+
+
+
+
+
+\begin{enumerate}
+
+\item[{\bf Problem 1:}] Read about the Field of Quotients (p. 290-291 of Gallian) and in particular read the proof of Theorem 15.6. Rewrite the proof in your own words, and complete any unverified claims (particularly the two pieces which are left to exercises).
+\begin{proof}
+We shall rewrite the theorem 15.6 on Gallian. Let D be an integral domain. We aim to construct field F that contains a subring isomorphic to D. 
+
+First let $S=\{(a,b)|a,b\in D, b\neq 0\}$. Define an relationship as 
+\[(a,b)\equiv (c,d) \text{ if and only if }ad=bc\]
+This relationship is a equivalence relationship because it satisfy following properties\begin{enumerate}
+    \item $(a,b)\equiv (a,b)$ since the Field is commutative Ring, thus $ab=ba$.
+    \item if $(a,b)\equiv (c,d)$, then $da=ad=bc=cb$, then $(c,d)\equiv (a,b)$ as well since $cb=da$.
+    \item if $(a,b)\equiv (c,d)$, $(c,d) \equiv (e,f)$, then we have $ad=bc$ and $cf=de$. Since D is a integral domain, thus commutative in multiplication, we have $afcd=adcf=bcde=becd$. Since Integral domain have cancel property, $af=be$, thus $(a,b)\equiv (e,f)$.
+    
+\end{enumerate}
+Now consider $F$ to be the equivalence class that contains $(x,y)$ by $x/y$. Define addition and multiplication on $F$ by 
+\[ a/b+c/d=(ad+bc)/(bd)\text{ and } (a/b)( c/d)=(ac)/(bd)\]
+We shall first show that addition well-defined, let $a/b=a'/b'$ and $c/d=c'/d'$, by definition we have $ab'=ba', cd'=dc'$. Notice that integral domain are commutative, thus we have:
+\[(ad+bc)b'd'=adb'd'+bcb'd'=(ab')bb'+(cd')bb'=(a'b)dd'+(c'd)bb'=(a'd'+b'c')bd\]
+By definition, this is equivealent to:
+\[ (ad+bc)/(bd)= (a'd'+b'c')/(b'd')\]
+To show that multiplicaiton is well defined, we use the same setup shown above. Then we aim to show that $(a/b)(c/d)=(a'/b')(c'/d')$ which is equivalent to show that $(ac,bd)\equiv (a'c',b'd')$. Thus we have:
+\[acb'd'=(ab')(cd')=(ba')(dc')=bda'c'\]
+Which satisfy our goal.
+Let 1 be the unity of D, then we set $0/1$ to be the additive identity since $a/b+0/1=a/b=0/1+a/b$ by definition. 
+
+Set additive inverse of $a/b$ to be $-a/b$ since $a/b+-a/b=(ab-ab)/b^2\equiv 0/1$ given that $0*1=0*b^2$. 
+
+Set $1/1$ to be the multiplicative inverse since $(a/b)(1/1)=a/b=(1/1)(a/b)$. 
+
+Set the multiplicative inverse of a nonzero element $a/b$ to $b/a$ since $(a/b)(b/a)=ab/ba $ and we have $(ab,ba)\equiv (1,1)$ since $ab=ba$ and D is commutative. 
+
+Then define the mapping $\varphi: D\rightarrow F: \varphi(x)=x/1$. We aim to show that it is a ring isomorphism from $D to \varphi(D)$. Since for arbitrary $x,y\in D$, we have $\varphi(x+y)=(x+y)/1=x/1+y/1=\varphi(x)+\varphi(y)$ and $\varphi(xy)=(xy)/1=(x/1)(y/1)$ by our construction. It is hereby a ring homeomorphism. It is surjective since the taget space is $\varphi(D)$. It is also injective since each $x\in D$ is uniquely defined and also $x/1$ in $\varphi(D)$. Thus we have found our isomorphism.
+\end{proof}
+
+\newpage
+\item[{\bf 15.63:}] In class, we stated the following result: 
+
+ If $F$ is a field of characteristic $0$, then $F$ contains a subfield isomorphic to $\Q$.
+
+Prove this result.\footnote{If you get stuck, p. 290 of Gallian contains a hint.}
+\begin{proof}
+By corrlary 1, we know that F contain some S that is isomorphic to $\Z$. Let $g$ be an isomorphism between them. Then Consider the set:
+\[T=\{ab^{-1}|a,b,\in S, b\neq 0\}\]
+We aim to show T is isomorphic to $\Q$. We shall construct the mapping: $f(ab^{-1})=\dfrac{g(a)}{g(b)}$. Then for arbitrary $a,b,c,d \in S$, $f(ab^{-1}+cd^{-1})=f((ad+bc)(bd)^{-1})=\dfrac{g(ad+bc)}{g(bd)}$. Given that $g$ is isomorphism, it preserves multiplicaiton and addition: $\dfrac{g(ad+bc)}{g(bd)}=\dfrac{g(a)g(d)+g(b)g(c)}{g(b)g(d)}=\dfrac{g(a)}{g(b)}+\dfrac{g(c)}{g(d)}=f(ab^{-1})+f(cd^{-1})$. 
+
+In similar vein, $f(ab^{-1})f(cd^{-1})=\dfrac{g(a)}{g(b)} \dfrac{g(c)}{g(d)}=\dfrac{g(ac)}{g(bd)}=f(ac(bd)^{-1})=f(ab^{-1}cd^{-1})$
+
+Thus $f$ is a homomorphism. We then aim to show it is bijection:
+
+If $f(ab^{-1})=f(cd^{-1})$, then $\dfrac{g(a)}{g(b)}=\dfrac{g(c)}{g(d)}$, $g(a)g(d)=g(b)g(c)$. Since g preserves multiplication and is injective, $ad=bc$. Thus $ab^{-1}=cd^{-1}$.
+
+For arbitrary $\dfrac{p}{q}\in \Q$, given that $g$ is surjective, there are some $a,b\in S$ such that $\dfrac{g(a)}{g(b)}=\dfrac{p}{q}$. Thus $f(ab^{-1})=\dfrac{p}{q}$ and f is sujective. 
+
+Thus we have completed our proof and T is isomorphic to $\Q$.
+\end{proof}
+
+\newpage
+\item[{\bf 15.44}] Let $R$ be a commutative ring of prime characteristic $p$. Show that the Frobenius map $x\mapsto x^p$ is a ring homomorphism from $R$ to $R$.
+\begin{proof}
+We aim to show first:$F(x+y)=F(x)+F(y)$: By binomial theorem we know that:
+\[(x+y)^p=\binom{p}{0}x^p+\binom{p}{1}x^{p-1}y...\binom{p}{p}y^p \]
+We know that for each $\binom{p}{n}$ with $n\neq 0, p$, the corfficient is divisible by $p$. Since $R$ has characteristic $p$, we know that the terms in between will be 0. Thus $F(x+y)=(x+y)^p=x^p+y^p=F(x)+F(y)$
+
+Then we aim to show that $F(xy)=F(x)F(y)$. Since $F(xy)=(xy)^p=xyxyxyxyxy...xy$, given that $R$ is commutative, we can re-arrange it to $x^py^p=F(x)F(y)$. 
+
+Thus we have shownt that Frobenius map is a ring homeomorphism. 
+
+\end{proof}
+
+
+\newpage
+\item[{\bf 15.53}] Determine all ring homomorphisms from $\R$ to $\R$. 
+\begin{proof}
+We shall first show that any ring homomorphism from $\R$ to $\R$ is a ring automorphism. Let $\phi$ be such homomorphism, we know that for arbitrary $x\in \R$, $\phi(1*x)=\phi(1)\phi(x)=\phi(x)\phi(1)=\phi(x*1)$. Then by definition $\phi(1)$ is the multiplicative identity of the $\R$. Thus $\phi(1)=1$. 
+
+Then we aim to show $\phi$ is bijective. This is simple because for each $x\in \R$, we can have $x=\phi(1)\phi(n)$ and by ring homomorphism $x=\phi(1*n)$ and $1*n$ is unique. Thus it is bijective. 
+
+Then we aim to show that the only automorphism from $\R$ to $\R$ is identity. First consider arbitrary rational number $p/q\in \Q$. Then by properties of ring isomorphism, $\phi(p/q)=p\phi(1/q)=p(1/q)\phi(1)=(p/q)\phi(1)$. Thus we have shown that $\phi$ is identity map on rationals. 
+
+Then assume that there are some $\phi(x)\neq x$, without loss of generality, assume $\phi(x)<x$. Then since rational is dense in $\R$, we can construct an increasing sequence $[r_n]$ such that $\lim_{n\rightarrow \infty -}r_n=x $. Thus there is a tail of $[r_n]$ such that for $k>m$: $\phi(x)<r_k<x$. 
+
+Thus applying $\phi$ to $r_k<x$ we have $\phi(\lim(r_k))=\lim \phi(r_k)=\lim r_k=x < \phi(x)$ which contradicts our assumption. $\phi(a)=a$ and $\phi$ is hereby identity map. 
+
+\end{proof}
+\newpage
+\item[{\bf 16.5:}] Prove the first Corollary of the division algorithm: 
+
+If $F$ is a field, $a\in F$ ,and $f(x)\in F[x]$, then $f(a)$ is the remainder in the division of $f(x)$ by $x-a$. 
+
+Use this to give a (very!) brief proof of the second corollary: that $a$ is a zero of $f(x)$ if and only if $x-a$ is a factor of $f(x)$.
+
+\begin{proof}
+Let $g(x)=x-a$, since $x-a\neq 0$, by division algorithm we have $f(x)=(x-a)q(x)+r(x)$ with $\deg r(x)<\deg g(x)=1$ or $\deg r(x)=0$. In this case $\deg r(x)=0$ is the only viable option. Thus $r(a)$ is the constant remainder since $f(a)=r(a)$.
+
+Since when $r(x)=0$, $f(x)=(x-a)q(x)$. So $x-a$ is a factor of $f(x)$. Then if $x-a$ is a factor of $f(x)$, $f(x)=(x-a)q(x)$ implies $r(x)=0$.
+\end{proof}
+
+\newpage
+\item[{\bf 16.24}] Let $F$ be an infinite field, and let $f(x), g(x)$ be elements of $F[x]$. If $f(a)=g(a)$ for infinitely many elements $a$ of $F$, show that $f(x)=g(x)$.\footnote{Hint: it may help to look at the preceding problem 16.23}
+\begin{proof}
+For arbitrary non-zero $f(x)\in F[x]$, we know that it must have at most $n$ roots where n is finite. Since $f(a)=0$ for infinitely many $a$ of $F$, then it contradicts the fact that $f(x)$ is non-zero. Thus $f(x)=0$.
+
+
+Then we turn our attention to this problem. Given that $f(a)=g(a)$ for infinitely many elements $a$ of $F$, then $h(x)=f(x)-g(a)$ for infinitely many elements $a$ of $F$. By previous part we know $h(x)=0$, hereby $f(x)=g(x)$.
+\end{proof}
+
+\newpage
+\item[{\bf 16.46}] Prove that $\Q[x]/\langle x^2-2\rangle$ is ring-isomorphic to $\Q(\sqrt 2) = \{a+b\sqrt 2\,|\, a,b\in \Q\}$. 
+\begin{proof}
+Consider $\phi: \Q[x]\rightarrow \Q(\sqrt 2)$ with $\phi(f(x))=f(\sqrt{2})$. Then $x^2-2\in \ker \phi$ and it is polynomial of minimum degree in $\ker \phi$. Thus $\ker \phi=\langle x^2-2 \rangle$ and by first isomorphism theorem $\Q[x]/\langle x^2-2\rangle$ is ring-isomorphic to $\Q(\sqrt 2)$
+\end{proof}
+
+\newpage
+\item[{\bf 16.48}] Let $F$ be a field and $I=\{f(x)\in F[x] \,|\, f(a)=0$ for all $a\in F\}$. Prove that $I$ is an ideal in $F[x]$. Prove that $I$ is infinite when $F$ is finite, and that $I=\{0\}$ when $F$ is infinite. When $F$ is finite, find a monic polynomial $g(x)$ such that $I=\langle g(x)\rangle$. [Note: {\it monic} means that the leading coefficient of $g(x)$ is $1$.]
+\begin{proof}
+For arbitrary $f,g\in I$, $(f-g)(x)=f(x)-g(x)=0-0=0$. For arbitrary $k\in F[x]$, $kf(x)=k(x)f(x)=0=f(x)k(x)=fk(x)$. Thus $I$ is an ideal. 
+
+If $F$ is finite, let $f=\{k_i|i\in \N [1,n]\}$, we can construct $f_p(x)=p(x-k_1)(x-k_2)...(x-k_n)$ and this will equals to 0 for all $x=k_i$ for each $p\in \N$. Thus we can construct infinitely many $f_p$s in $I$.
+
+If $F$ is infinite, then for arbitrary $f\in I$, $f(x)=0$ for infinitly many $a\in F$. By previous question we know that $f=0$.
+
+If $F$ is finite, then as show earlier it must be in the form of $f(x)=k(x)(x-k_1)(x-k_2)...(x-k_n)$. Thus let $g(x)=(x-k_1)(x-k_2)...(x-k_n)$ and it is monic. 
+\end{proof}
+
+
+\end{enumerate}
+
+\end{document}  
+
+%THIS IS WHERE THE DOCUMENT ENDS. Anything written after this will not appear on the pdf.

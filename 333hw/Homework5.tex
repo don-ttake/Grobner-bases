@@ -1,0 +1,245 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newcommand{\stab}{\operatorname{stab}}
+\newcommand{\orb}{\operatorname{orb}}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\title{Homework 5}
+\author{The Author}
+%\date{}			
+
+
+
+
+%THIS IS WHERE THE ACTUAL TEXT OF THE DOCUMENT BEGINS.				
+\begin{document}
+
+\begin{center}\noindent{\bf Math 333:  Homework \#5}\\Mingchen Li \\ \end{center}
+\thispagestyle{empty}
+
+
+
+\hrulefill %This just makes a nice horizontal line. Useful if you like to separate your problems with lines!
+
+In the first three problems, you will prove Cayley's Theorem, which states that ANY group can be viewed as a group of permutations. These three problems go together; all notation  carries over.
+
+\begin{enumerate}
+
+
+
+\item[{\bf Problem 1:}] Let $G$ be a group, and $g$ an element of $G$. Define a function $T_g:G\rightarrow G$ by $T_g(x) = gx$. Prove that $T_g$ is a permutation on the set of elements in $G$ (that is, prove that $T_g$ is a bijection).
+
+
+
+\begin{enumerate}
+    \item[Surjection:]
+    Take arbitrary $y\in G$, we aim to find $x\in G$ such that $T_g(x)=y$. Since $g\in G$, $g^{-1}\G$ as well. 
+    
+    Since group operation is closed, $g^{-1}y\in G$ as well. Let $x=g^{-1}y$, given that group operation is associative, $T_g(x)=g(g^{-1}y)=(gg^{-1})y=y$. Thus we have find our x.
+    \item[Injection:]
+    Assume that there are $x_1\neq x_2\in G$ such that $T_g(x_1)=T_g(x_2)=y$. Then $gx_1=gx_2=y$. Apply $g^{-1}$ to both left side of the equation: 
+    \[g^{-1}gx_1=x_1=x_2=g^{-1}gx_2\]
+    
+    This contradict our assumption and $T_g$ is hereby injection and surjective.
+\end{enumerate}
+    
+
+\newpage
+\item[{\bf Problem 2:}]  Now, let $\mathcal T_G = \{T_g\,|\, g\in G\}$. Prove that $\mathcal T_G$ forms a group under composition of functions.
+\begin{enumerate}
+    \item[Exist Identity: ] Consider $T_e \in \mathcal T_G $ where $T_e(x)=ex=x$. For arbitrary $g\in G, T_g\in \mathcal{T}_G$, 
+    \[T_gT_e(x)=g(ex)=g(x)=e(g(x))=T_eT_g(x)\]
+    Thus $T_e$ is the identity.
+    \item[Exist inverse: ] Let $g\in G, T_g\in \mathcal{T}_G$ be arbitrary. Consider $T_{g^{-1}}$ to be the inverse of $T_g$ by using the associativiity of function composition:
+    \[T_{g^{-1}}T_g(x)=g^{-1}g(x)= e(x)= T_e(x)=e(x)=gg^{-1}(x)=T_gT_{g^{-1}}(x)\]
+    
+    Thus we have found the inverse of the group.
+    \item[Closed operation: ] Take arbitrary $g, t\in G$, $T_gT_t(x)= gt(x)$. Since G is closed under group operation, $gt\in G$. Thus $T_{gt}(x)=gt(x)=T_gT_t(x)$. Thus operation is closed.
+    \item[Associativity: ] Take arbitrary $g, t, r\in G$, $T_gT_tT_r(x)=gtr(x)$. Since operation in G is associative, $T_g(T_tT_r)(x)=g(tr)(x)=(gt)r(x)=(T_gT_t)T_r(x)$. Thus operation in $\mathcal{T}_G$ is associative
+\end{enumerate}
+Thus $\mathcal{T}_G$ is a group under composition of functions.
+\newpage
+\item[{\bf Problem 3:}] Prove that $G\cong \mathcal T_G$. [This is {\bf Cayley's theorem:} you are proving that $G$ is isomorphic to a set of permutations....{\it of itself}.]
+\begin{proof}
+Consider the mapping: $\mathcal{F}: G \rightarrow \mathcal{T}_G$ where $\mathcal{F}(g\in G)=T_g$. We aim to show $\mathcal{F}$ is isomorphism: 
+\newline
+Bijection: Take arbitrary $T_g\in \mathcal{T}_G$ for some $g\in G$. By definition $\mathcal{F}(g)=T_g$. Thus $\mathcal{F}$ is Surjective.  Assume that there are $g_1\neq g_2\in G $ such that $\mathcal{F}(g_1)=\mathcal{F}(g_2)=T_g$. Then $T_{g_1}=T_{g_2}$ and $T_{g_1}(e)=g_1(e)=g_1=g_2=g_2(e)=T_{g_2}(e) \Rightarrow\Leftarrow$. Thus $\mathcal{F}$ is Injective.
+
+\newline
+Preserve operation: We aim to show:
+\[\mathcal{F}(g_1g_2)=\mathcal{F}(g_1)\mathcal{F}(g_2)\]
+We have shown before that $\mathcal{T}_G$ is a group. Thus $[\mathcal{F}(g_1g_2)](x)=T_{g_1g_2}(x)=T_{g_1}T_{g_2}(x)=\mathcal{F}(g_1)\mathcal{F}_{g_2}(x)$ for some $x\in G$. Thus $\mathcal{F}$ preserve operation and $G\cong \mathcal T_G$. 
+\end{proof}
+
+
+
+
+\newpage 
+\item[{\bf Problem 4:}] Suppose $\varphi:G\rightarrow G'$ is an isomorphism of groups. 
+\begin{itemize}
+\item Prove that $G$ is Abelian if and only if $G'$ is Abelian.
+\item Prove that $G$ is cyclic if and only if $G'$ is cyclic.
+\end{itemize}
+
+\begin{enumerate}
+    \item  For arbitrary $\hat{g_1}, \hat{g_2}\in G'$, since $\varphi$ is an isomorphism, thereby surjective, there are $g_1, g_2 \in G$ such that $\varphi (g_1)=\hat{g_1}$ and $\varphi (g_2)=\hat{g_2}$. Since $\varphi$ is an isomorphism, thereby preserve operation:
+    \[\varphi(g_1g_2)=\varphi(g_1)\varphi(g_2)=\hat{g_1}\hat{g_2}\]
+    \[\varphi(g_2g_1)=\varphi(g_2)\varphi(g_1)=\hat{g_2}\hat{g_1}\]
+    $\Rightarrow:$ Assume $G$ is Abelian, $g_1g_2=g_2g_1$, thus $\varphi(g_1g_2)=\varphi(g_2g_1)$. 
+    \newline
+    Thus we have $\hat{g_1}\hat{g_2}=\hat{g_2}\hat{g_1}$ and $G'$ is abelian.
+    
+    $\Leftarrow$ By property of isomorphism on groups, the inverse of the isomorphism is also isomorphism. Thus we can apply the same reasoning on $\varphi^{-1}$
+    \item$\Rightarrow: $ For arbitrary $g'\in G'$, since $\varphi$ is surjective, there is some $g\in G$ such that $\varphi(g)=g'$. Assume G is cyclic, then $g=a^n$ where $G=\langle a \rangle$ and $\varphi(a)=a'$. Since $\varphi$ preserve operation:
+        
+        \[\varphi(g)=\varphi(a^n)=\varphi(a)^n=(a')^n=g'\]
+        Thus $G'\subseteq \langle a' \rangle $. To show $G'\supseteq \langle a' \rangle $, let $m\in \N$ be arbitrary. Using the property of $\varphi$ shown above, we have $(a')^m=\varphi(a^n)\in G$. Thus $G'=\langle a' \rangle$
+        
+        $\Leftarrow$ By property of isomorphism on groups, the inverse of the isomorphism is also isomorphism. Thus we can apply the same reasoning on $\varphi^{-1}$
+    
+    
+\end{enumerate}
+
+
+\newpage
+\item[{\bf Problem 5}] ( 6.44)Show that the mapping $a\mapsto \log_{10}(a)$ is an isomorphism from $\R_{>0}^*$, the group of positive real numbers under multiplication, to $\R$, the group of real numbers under addition. 
+\begin{proof}
+To show the mapping (denoted as f) is isomorphism, we need to show it's bijection and preserve operation.
+\begin{enumerate}
+    \item Bijection: Take arbitrary $x\in \R$, consider a=$10^x$, $a\in \R_{>0}^* $, we know $f(10^x)=log_{10}(10^x)=x$. Thus $f$ is surjective. Assume there are $a_1, a_2\in \R_{>0}^*$ such that $f(a_1)=f(a_2)=log_{10}(a)$. Since log is injective, $a_1=a_2$. Thus f is injective. 
+    \item Preserve order: Take arbitrary $a, b\in \R_{>0}^*$, since log is distributive by product: $f(ab)=log_{10}(ab)=log_{10}(a)+log_{10}(b)=f(a)+f(b)$. Since the target group operation is addition, the operation is hereby preserved. 
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+\newpage
+\item[{\bf Problem 6:}] Sort the following groups into equivalence classes under isomorphism, and prove that your sorting is correct.\footnote{To avoid having to do $\binom{10}{2}$ proofs, make use of previous problems as well as any results from class and from previous homework.}
+
+\begin{enumerate}
+\item $G=\left\{ \begin{bmatrix} 1 & a\\ 0 & 1\end{bmatrix} \, \bigg| \, a\in \Z\right\}$ under matrix multiplication.
+\item $\R^* = \R\backslash\{0\}$ under multiplication
+\item $\C^* = \C\backslash\{0\}$ under multiplication
+\item $GL_2(\R)$ under matrix multiplication.
+\item $\Z$ under addition
+\item $6\Z$ under addition
+\item $\Z/6\Z$ under addition mod 6
+\item $\Z/2\Z \times \Z/3\Z$
+\item The group of rotations of a regular hexagon 
+\item $S_3$
+
+\end{enumerate}
+\begin{enumerate}
+    \item[Class 1:] a, e, f
+    \begin{proof}
+    Define $\begin{bmatrix} 1 & a\\ 0 & 1\end{bmatrix}\mapsto a\in \Z$. The map is bijection because for all $a\in \Z$ we can construction a matrix $\begin{bmatrix} 1 & a\\ 0 & 1\end{bmatrix}$ that maps to it and this matrix is unique for obvious reason. It also preserve operation because $\begin{bmatrix} 1 & a\\ 0 & 1\end{bmatrix}\begin{bmatrix} 1 & b\\ 0 & 1\end{bmatrix}=\begin{bmatrix} 1 & a+b\\ 0 & 1\end{bmatrix} \mapsto a+b $ while $\begin{bmatrix} 1 & a\\ 0 & 1\end{bmatrix}\mapsto a$ and $\begin{bmatrix} 1 & a\\ 0 & 1\end{bmatrix}\mapsto b$. 
+    
+    Define $a\in \Z \mapsto 6a \in 6\Z$. This map is bijection because for each $6a\in 6\Z$, we have $a$ to map to it and a is unique since division by integer is injective. It also preserve operation because $a+b\mapsto 6a+6b$ while $a\mapsto 6a,  b\mapsto 6b$ for arbitrary $a,b \in \Z$
+    
+    $a\cong f$ because of the transitivity of isomorphism. Thus we have evaluated group 1.
+    
+    Group 1 is disjoint from other groups because they are the only groups that are countably infinite.
+    
+    \end{proof}
+    
+    \item[Class 2:] g, h, i
+    \begin{proof}
+    $g\cong i$: Consider a regular hexagon. Define the map $\varphi(r)=$ rotation by $60*a$ degree clockwise. This map is bijection: for each possible rotation on a hexagon, it must be a multiple of 60 degree. Thus we can find a unique one in $\Z/6\Z$ that maps to this rotation. This map preserve operation because $\varphi(a+_6b)=\text{rotate by (a+b)*60 degree}=\text{rotate by a*60 degree then b*60 degree}=\varphi(a)\varphi(b)$.
+    
+    $g\cong h$: define the map $\varphi(1)=(1,1)$. Since $\Z/6\Z, \Z/2\Z, \Z/3\Z$ are cyclic, we have mapped the generator to generator. To preserve operation we define the rest of mapping like this:
+    
+    \begin{enumerate}
+        \item $\varphi(2)=(0,2)$
+        \item $\varphi(3)=(1,0)$
+        \item $\varphi(4)=(0,1)$
+        \item $\varphi(5)=(1,2)$
+        \item $\varphi(0)=(0,0)$
+        
+    \end{enumerate}
+    Thus clearly this is a bijection, and $\varphi(a+b)=\varphi(1)^{a+b}=\varphi(1)^a\varphi{1}^b=\varphi(a)\varphi(b)$. Thus preserve operation.
+    \end{proof}
+    
+    \item[Rest of the groups:] Group b, c  and d has higher cardinality than any of the class 1 and class 2 elements. Thus there will not be a bijection between them and class 1 or 2 element. Group b and c are not isomorphic because consider element $i\in \C^*, |i|=4$. However every element in $\R^*$ has infinite order. So no isomorphism can be established. In similar vein $GL_2(\R)$ have finite order element as well. $GL_2(\R)$ is not abelian while $C^*$ is. So no isomorphism can be established. 
+    
+    Group $S_3$ is not abelian as well while element in class 2 are, so no isomorphism can be established.
+    
+\end{enumerate}
+\newpage
+\item[{\bf Problem 7:}] Let $G$ be a group and let $Z(G)$ be the center of $G$ (i.e, $Z(G) = \{g\in G\,|\, gx=xg \text{ for all } x\in G\}$. Prove that $G/Z(G)$ is cyclic if and only if $G$ is Abelian.
+\begin{proof}
+$\Rightarrow$ : Assume that $G/Z(G)$ is cyclic, $G/Z(G)=\langle aZ(G) \rangle $ where $a\in G$. Then take arbitrary $x,y\in G$, we know $x\in xZ(G)=(aZ(G))^i=a^iZ(G)$. Thus $x=a^iz_x, z_x\in Z(G)$. In similar vein, we can denote $y=a^jz_y \in a^jZ(G)=yZ(G)$. Since $z_x, z_y$ commutes to all element in G:
+
+\[xy= a^iz_x a^jz_y=a^ia^jz_x z_y=a^ia^jz_yz_x= a^ja^iz_yz_x=a^jz_ya^iz_x=yx\]
+Hereby G is abelian.
+
+$\Leftarrow$: Assume that G is Abelian, then for all $g\in G$, $xg=gx$ for all $x\in G$. Thus $G\subseteq Z(G)$ and $Z(G)\subseteq G$ by defintion. Thus $Z(G)=G$. Then we aim to show that $G/Z(G)=\{eZ(G)\}$ and hereby cyclic. For aribitrary $g\in G$, according to the property of cosets, $gZ(G)=Z(G)$ iff $g\in Z(G)$. Now we know that $Z(G)=G$, thus by definition $G/Z(G)=\{eZ(G)\}$.
+\end{proof}
+\newpage
+
+\item[{\bf Problem 8:}]
+Quotient groups are a powerful tool for algebraic proofs. In particular, since they allow us to ``reduce" a group down without destroying all of its structure, they provide us with a natural way to use induction on groups.
+
+ In this problem, you will use quotient groups and induction to prove {\bf Cauchy's theorem:}  If $G$ is a finite Abelian group and $p$ is a prime dividing the order of $G$, then $G$ has an element of order $p$. 
+
+The following steps will guide you through the proof. {\bf However, the final version should be written up as a single coherent proof, not as a series of answers to steps.}
+
+\begin{itemize}
+\item This proof is done by strong induction on $|G|$. So first, prove the base case ($|G|=2$), and state your inductive hypothesis.
+
+\item Let $G$ be a group with $|G|>2$ and let $p$ be a prime dividing the order of $G$.  First, prove that $G$ must have an element of {\it some} prime order $q$ (it may be that $q\neq p$). You can do this directly (no induction yet).
+
+\item If $q=p$, we are done, so assume $q\neq p$, and let $x$ be an element of $G$ order $q$. Show that: 
+\begin{itemize}
+\item $G'=G/\langle x\rangle$ is an Abelian group.
+\item $p$ divides $|G'|$ and $|G'|<|G|$.
+\end{itemize}
+
+\item Apply the inductive hypothesis to obtain an element $y\langle x\rangle$ of $G'$ of order $p$. Show that either $y$ has order $p$, or $y^q$ has order $p$.
+
+
+\end{itemize}
+\begin{proof}
+We shall prove this theorem using strict induction. First we aim to show for $|G|=2$, G is a finite abelian group, and p is a prime dividing the order of G, then G has an element of order p. In this case, the only prime possible is 2. For $G=\{e, a\}$, $|a|=2$ since if $aa= a$, then $a=e$ which contradict the assumption. Thus the statement is true for $|G|=2$.
+
+Then we assume that the statement is true for all finite abelian group with order less than $|G|$, $|G|>2$. We aim to show that the statement is also true for abelian group $G$. 
+
+Let $G$ be a group with $|G|>2$ and let $p$ be a prime dividing the order of $G$. Firstly the group $G$ must have some element of prime order $q$. For arbitrary $x\in G$, $|x|=qn$ where $q$ is prime and $n\in \N$. Then by the property of the group, $|x^n|=q$ and we have found the element with prime order q.
+
+If $p=q$, we are done. Assume $p\neq q$. and denote $x$ to be the element of a group G that has order q. Define: $G'=G/\langle x\rangle$. For arbitrary $x,y \in G'$, $x=g_a\langle x\rangle, y=g_b\langle x\rangle$ for some $g_a, g_b\in G$. Since G is abelian, x, y are hereby normal:
+
+\[xy= g_a\langle x\rangle g_b\langle x\rangle=g_a g_b\langle x\rangle= g_bg_a\langle x\rangle =g_b\langle x\rangle g_a\langle x\rangle=yx\]
+
+Thus $G'$ is abelian, it can be applied to our induction assumption. By Lagrange's theorem:
+\[|G/\langle x\rangle||\langle x\rangle|=|G|\]
+Since $|G|=mp, |\langle x\rangle|=q$, $p$ divides $|G'|$ and by induction assumption, there is an element in $G'$, denoted as $y\langle x\rangle$, that has order of p. Thus:
+\[(y\langle x\rangle)^p=y^p\langle x\rangle=\langle x\rangle\]
+Thus $y^p\in\langle x\rangle$. Either $y^p=e$, or $y^p$ has order q and we can find $y^q$ to be the element in G that have order p.
+
+\end{proof}
+
+\end{enumerate}
+
+\end{document}  
+
+%THIS IS WHERE THE DOCUMENT ENDS. Anything written after this will not appear on the pdf.

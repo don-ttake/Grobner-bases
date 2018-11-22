@@ -1,0 +1,205 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage[margin=1in]{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{graphicx}						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+%Commands above this line set up the type of document, and ensure it has access to the LaTeX files needed to understand your commands.
+
+%Here, I define some "shortcuts" for notation I commonly use.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{theorem}{Theorem}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+ 
+\lhead{Mingchen Li}
+\rhead{MA333 HW2}
+ 
+%THIS IS WHERE THE ACTUAL TEXT OF THE DOCUMENT BEGINS.				
+\begin{document}
+
+\thispagestyle{empty}
+% \hrulefill %This just makes a nice horizontal line. Useful if you like to separate your problems with lines!
+
+hi 
+\newpage
+
+\begin{enumerate}
+
+
+\item[{\bf Problem 1:}] Let $G$ be a group under operation $*$ and let $H$ be a group under operation $*'$. Prove that the set $G\times H=\{(g,h) \, | \, g\in G, h\in H\}$ forms a group under operation $\star$, where $(g_1,h_1)\star (g_2,h_2)$ is defined to be $(g_1*g_2, h_1*'h_2)$. [Note: though we often avoid it, you should (briefly) address the associativity here.]
+
+\begin{proof}
+To show $G\times H$ forms a group, it must satisfy following conditions:
+\begin{enumerate}
+    \item Closed: Take arbitrary $(g_1,h_1), (g_2,h_2) \in G\times H$, $(g_1,h_1)\star (g_2,h_2)=(g_1*g_2, h_1*'h_2)$. Since $G, H$ are groups, $*, *'$ are closed operations $\Rightarrow{}g_1*g_2\in G, h_1*'h_2\in H $. Thus
+    \[(g_1,h_1)\star (g_2,h_2) \in G\times H\]
+    
+    \item Exist Identity. Since G, H are groups, they both have identity elements $e_G, e_H$. By definition $(e_G, e_H) \in G\times H$. Take arbitrary $(g_1,h_1) \in G\times H$. 
+    
+    \[(g_1,h_1) \star (e_G, e_H)= (g_1 *e_G, h_1*'e_H )= (g_1,h_1)=(e_G *g_1, e_H*'h_1 ) =(e_G, e_H)\star  (g_1,h_1) 
+    \]
+    
+    
+    Thus we have found our identity.
+    
+    \item Exist inverse: take arbitrary $(g_1,h_1) \in G\times H$. Since G, H are groups, their elements have inverse: $g_1 * g_1^{-1}= e_G, h_1*'h_1^{-1}=e_H$ where $g_1^{-1}\in G,h_1^{-1}\in H$. Thus $(g_1^{-1}, h_1^{-1})\in G\times H$ and $(g_1,h_1)^{-1} =(g_1^{-1}, h_1^{-1})$ since $(g_1^{-1}, h_1^{-1}) \star (g_1,h_1) = (e_G, e_H)$ which by previous proof is the identity of $G\times H$.
+    
+    \item Associativity: Since *, *' are associative, and $\star$ can be broken down into pairs of *, *' operation, thus $\star$ is an associative operator.
+\end{enumerate}
+\end{proof}
+
+Draw the Cayley table for $\Z/3\Z \times U(4)$ (where $\Z/3\Z$ is a group under addition mod 3 and $U(4)$ is a group under multiplication mod 4).
+In this char we denote  $\Z/3\Z =\{[1],[2],[0]\}$ Due to the formatting we shall not put equivalence class symbols in the chart. $U(4)= \{1, 3, 0\}$.
+\begin{center}
+ \begin{tabular}{||c c c c c c c c c c ||} 
+ \hline
+  & (1,1) & (1,3) & (1,0) & (2,1) & (2,3) & (2,0) & (0,1) & (0,3) & (0,0)\\ [0.5ex] 
+ \hline\hline
+ (1,1) & (2,1) & (2,3) & (2,0) & (0,1) & (0,3) & (0,0) &(1,1) & (1,3) &(1,0) \\ 
+ \hline
+ (1,3) & (2,3) & (2,1) & (2,0) & (0,3)& (0,1)&(0,0)&(1,3) &(1,1) &(1,0) \\
+ \hline
+ (1,0) & (2,0) & (2,0) & (2,0) & (0,0)& (0,0)&(0,0)&(1,0) &(1,0) &(1,0) \\
+ \hline
+ (2,1) & (0,1) & (0,3) & (0,0) & (1,1)& (1,3)&(1,0)&(2,1) &(2,3) &(2,0) \\
+ \hline
+ (2,3) & (0,3) & (0,1) & (0,0) & (1,3)& (1,1)&(1,0)&(2,3) &(2,1) &(2,0) \\
+ \hline
+ (2,0) & (0,0) & (0,0) & (0,0) & (1,0)& (1,0)&(1,0)&(2,0) &(2,0) &(2,0) \\
+ \hline
+ (0,1) & (1,1) & (1,3) & (1,0) & (2,1)& (2,3)&(2,0)&(0,1) &(0,3) &(0,0) \\
+ \hline
+ (0,3) & (1,3) & (1,1) & (1,0) & (2,3)& (2,1)&(2,0)&(0,3) &(0,1) &(0,0) \\
+ \hline
+ (0,0) & (1,0) & (1,0) & (1,0) & (2,0)& (2,0)&(2,0)&(0,0) &(0,0) &(0,0) \\
+ \hline
+ 
+\end{tabular}
+\end{center}
+
+\newpage
+
+\item[{\bf Problem 2:}] Let $G$ be a finite group with $|G|>2$. Prove that no element of $G$ may have order $|G|-1$.\footnote{Note: although we have stated verbally that the order of an element must divide the order of a group, we have not yet proven it, and so you cannot use that fact unless you prove it yourself. Fortunately, it is not necessary to prove that fact in order to complete this problem.}   
+
+\begin{proof}
+Assume there is such a group $G$ where $|G|=n$, $|G|>2$ and $a\in G \Rightarrow{} |a|=a^{n-1}=e$. By Theorem 3.4, we know for any  $a\in G$, $\langle a \rangle$ forms a subgroup of $G$. 
+\[\langle a \rangle = \{ e, a, a^2, ... a^{n-2}\} \]
+Since this subgroup has $n-1$ elements while the group G has $n$ elements, we shall denote the "left out" element as $x\in G$, $x \notin \langle a \rangle$. 
+
+Notice that $a\neq e$ since if $a=e$ then $G = \{e, x\} \Rightarrow{} |G|=2$ which contradict our assumption.
+
+Thus by doing binary operation $ax$, the result cannot fall back to $x$ since $a\neq e$ and identity is unique. 
+
+Thus $ax = a^k \in \langle a \rangle$ for some $0 <k \leq n-1$. This implies $x=a^{k-1}\in \langle a \rangle. \Rightarrow\Leftarrow{}$ 
+\end{proof}
+
+
+
+\newpage
+\item[{\bf Problem 3}:] Let $G$ be a group, and $a$ an element of $G$. Prove that the centralizer of $a$ is a subgroup of $G$. 
+
+[Note: the {\it centralizer} of $a$ is the set $C(a) = \{x\in G\,|\, xa=ax\}$. That is, it is the set of all elements which commute with $a$.]
+\begin{proof}
+Let b, c be arbitrary elements in $C(a)$. 
+Since $b \in G$, $\exists b^{-1}\in G$. Since \[ab^{-1}=b^{-1}bab^{-1} =b^{-1}abb^{-1}=b^{-1}a\]
+By commutativity in $C(a)$ and associativity in $G$. We have $b^{-1}\in C(a)$. Then \[cb^{-1}a= cab^{-1}= acb^{-1}\]
+By commutativity in $C(a)$. Thus $cb^{-1} \in C(a)$. We have finished the proof using the one step strategy. 
+\end{proof}
+
+\newpage
+
+\item[{\bf Problem 4:}] Determine whether or not $\Q$ (under addition) is a cyclic group.
+ \begin{proof}
+ It is not. For arbitrary element $a\in \Q$, the set $\langle a \rangle=\{ka| k\in \Z\}$ represents all possible results of addition on a to itself. $\langle a \rangle$ is countable since $\Z$ is countable. However $\Q$ is not countable. So there will never be a bijection between $S(a)$ and $\Q$.
+ \end{proof}
+
+\newpage
+\item[{\bf Problem 5 3.13}] Suppose that $H$ is a nonempty subset of a group $G$ that is closed under the group operation and has the property that if $a$ is not in $H$ then $a^{-1}$ is not in $H$.  Is $H$ a subgroup of $G$?
+
+\begin{proof}
+First we shall look at the contrapositive statement: If $a^{-1}$ in H then a is in H. Take arbitrary $a,b \in H$, by property given:
+\[ b=(b^{-1})^{-1} \in H \Rightarrow{} b^{-1} \in H\]
+Thus $ab^{-1}$ make sense in H and since H is closed under group operation, $ab^{-1}\in H$. 
+
+\end{proof}
+
+\newpage
+\item[{\bf Problem 6 3.23}] Show that $U(20)\neq \langle k \rangle$ for any $k\in U(20)$ (and hence, $U(20)$ is not cyclic). Find a value of $n$ so that $|U(n)|>3$ {\bf and} $U(n)$ is cyclic.
+
+\begin{proof}
+$U(20)=\{1, 3, 7, 9, 11, 13,17, 19\}$. Since $|U(20)|=8$, for any element $a\in U(20)$ to satisfy $\langle a \rangle=U(20)$, $|a|$ must be 8. However, $1^1=1, 3^4=1, 7^4=1, 9^2=1, 11^2=1, 13^4=1, 17^4=1, 19^2=1$. Since none of their order is 8, the subgroup generated by them will have less element than $U(20)$. Thus it is impossible for $U(20)$ to be cyclic. 
+
+Take $U(7)=\{1,2,3,4,5,6 \}$ as example. Since $|U(7)|=6>3$, $5^1=5, 5^2=4, 5^3=6, 5^4=2, 5^5= 3, 5^6=1$. Thus $U(7)= \langle 5\rangle$
+\end{proof}
+
+
+\newpage
+\item[{\bf Problem 7 3.32}] Let $G$ be a group, and $H, K$ subgroups of $G$. Prove that $H\cap K$ is a subgroup of $G$. Would your proof generalize to an arbitrary intersection of subgroups? I.e., if $H_i$ is a subgroup for all $i\in I$, is $\bigcap_{i\in I} H_i$ necessarily a subgroup?
+
+\begin{proof}
+$H\cap K\neq \emptyset$ since $e\in H\cap K$.  Take arbitrary $a, b \in H\cap K$. Since $b \in H \Rightarrow{} b^{-1}\in H$. By the same logic $b^{-1} \in K \Rightarrow{} b^{-1} \in H\cap K$. Since the operation is closed in H and K. $ab^{-1}\in H$, $ab^{-1}\in K \Rightarrow{} ab^{-1}\in H\cap K$.
+
+\newline Yes the proof generalize to any arbitrary intersection of groups. Let $I$ denote a collection of integers such that $H_i, i\in I$ forms a subgroup. Then consider arbitrary $a,b \in \bigcap_{i\in I} H_i$. Since $\forall i\in I, b\in H_i \Rightarrow{} b^{-1} \in \bigcap_{i\in I} H_i$. Since the operation is closed, $\forall i\in I, ab^{-1} \in H_i\Rightarrow{}ab^{-1} \in \bigcap_{i\in I} H_i$. Using the one step test $\bigcap_{i\in I} H_i$ is hereby a subgroup. 
+\end{proof}
+
+\newpage
+\item[{\bf Problem 8 4.23}] 
+
+\begin{itemize}
+\item Let $\Z$ denote the group of integers under addition. Is every subgroup of $\Z$ cyclic? Prove your answer. Describe all the subgroups of $\Z$.  
+
+\begin{proof}
+Let $H$ be an arbitrary subgroup of G. Such subgroup exists since $\langle 0 \rangle$ is a subgroup for $(\Z,+)$. We aim to show H is cyclic.
+
+If $H=\{0\}$. H is trivially cyclic. 
+
+If $H\neq \{0\}$, since $(\Z,+) = \langle 1 \rangle$, for every $a\in H$, $a= 1^t$ for some $t\in \Z$. Find the smallest positive $\hat{t}$ such that $1^{\hat{t}} \in H$. Since $H$ is a subgroup,  $\langle 1^{\hat{t}}\rangle \subseteq H$. We aim to show $\langle 1^{\hat{t}}\rangle \supseteq H$.
+
+Take arbitrary $b= 1^k\in H$. Then by division arithmetic there exist some $q, r \in \Z \Rightarrow{}$
+\[1^k= (1^{\hat{t}})^q + r\] 
+Where $0\leq r <  \hat{t}$. If $0<r$, then $r\in H$ since $H$ is closed. However this contradicts our assumption that $1^\hat{t} $ is the smallest positive element in $H$. Thus $r=0 \Rightarrow{} 1^k= (1^{\hat{t}})^q \Rightarrow{} \langle 1^{\hat{t}}\rangle \supseteq H \Rightarrow{} \langle 1^{\hat{t}}\rangle = H$.
+\end{proof}
+
+The subgroup of $\Z$ can be expressed like this:
+\[\{ 
+kn| n\in \Z
+\}\]
+Where k is the smallest positive integer in this subgroup. 
+
+
+\item Let $a$ be an element of a group $G$ so that $a$ has infinite order. Describe all subgroups of $\langle a \rangle$.
+\begin{proof}
+The subgroups of $\langle a \rangle=  
+\{
+\langle e \rangle, \langle a \rangle, \langle a^2 \rangle, 
+\langle a^3 \rangle...
+\}
+$.
+It is sufficient to show any arbitrary subgroup is in this set. Let H be an arbitrary subgroup, we shall proceed the similar strategy as above to find the smallest positive $t \Rightarrow{} a^t\in H$. $\langle a^t \rangle$ obviously is in our collection of subgroups. We aim to show 
+\[\langle a^t \rangle =H\]
+Using the division arithmetic we can find some $q, r \Rightarrow{}$
+
+\[a^k= a^{qt+r}\]
+Where $a^k$ is arbitrary in H, $0\leq r <  t$. Again for the same reasoning r must be 0. We have complete the proof. 
+\end{proof}
+
+\end{itemize}
+
+
+\end{enumerate}
+
+\end{document}  
+
+%THIS IS WHERE THE DOCUMENT ENDS. Anything written after this will not appear on the pdf.
